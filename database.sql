@@ -122,14 +122,14 @@ insert into dbo.Users_Type values
 ('US2', 'Staff'),
 ('US3', 'Manager')
 
-insert into Movie values 
+insert into dbo.Movie values 
 ('mv1', 'Kiem than ti hon', '/source/img/Kiem_than_ti_hon.JPG', 90, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
 ('mv2', 'Meo may Kuro', '/source/img/kuro.JPG', 100, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
 ('mv3', 'Natra', '/source/img/natra.JPG', 180, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
 ('mv4', 'My neighbor Totoro', '/source/img/totoro.JPG', 80, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
 ('mv5', '1917', '/source/img/1917.JPG', 130, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' );
 
-insert into Schedule values 
+insert into dbo.Schedule values 
 ('SC1', 'CB1', 'mv1', '2020/04/30', '5:00 pm'),
 ('SC2', 'CB1', 'mv2', '2020/04/30', '8:00 pm'),
 ('SC3', 'CB1', 'mv3', '2020/04/30', '11:00 pm'),
