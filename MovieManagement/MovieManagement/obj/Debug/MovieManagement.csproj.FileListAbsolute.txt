@@ -11,6 +11,11 @@ D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CopyComplete
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+<<<<<<< HEAD
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+=======
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.pdb
@@ -37,3 +42,4 @@ D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\Movie
 D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Form1.resources
 D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Properties.Resources.resources
 D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.GenerateResource.Cache
+>>>>>>> 0032eadb55c8a1227a461b303e63aa0d175dac85
