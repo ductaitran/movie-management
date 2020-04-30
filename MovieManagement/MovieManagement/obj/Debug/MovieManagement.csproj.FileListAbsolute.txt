@@ -25,3 +25,15 @@ C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieMana
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CopyComplete
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.pdb
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Design.dll
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.dll
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Fonts.dll
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csprojResolveAssemblyReference.cache
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Form1.resources
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Properties.Resources.resources
+D:\GitHub\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.GenerateResource.Cache
