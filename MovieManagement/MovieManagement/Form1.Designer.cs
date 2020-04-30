@@ -96,6 +96,9 @@
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.UsersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UsersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UsersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -144,7 +147,7 @@
             this.metroTabMovie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabMovie.Location = new System.Drawing.Point(0, 47);
             this.metroTabMovie.Name = "metroTabMovie";
-            this.metroTabMovie.SelectedIndex = 1;
+            this.metroTabMovie.SelectedIndex = 2;
             this.metroTabMovie.Size = new System.Drawing.Size(1043, 465);
             this.metroTabMovie.TabIndex = 1;
             this.metroTabMovie.UseSelectable = true;
@@ -696,6 +699,7 @@
             this.metroTabUser.VerticalScrollbarBarColor = true;
             this.metroTabUser.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabUser.VerticalScrollbarSize = 10;
+            this.metroTabUser.Click += new System.EventHandler(this.metroTabUser_Click);
             // 
             // buttonRemoveUser
             // 
@@ -731,6 +735,10 @@
             // dataGridViewUser
             // 
             this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.UsersID,
+            this.UsersName,
+            this.UsersType});
             this.dataGridViewUser.Location = new System.Drawing.Point(11, 28);
             this.dataGridViewUser.Name = "dataGridViewUser";
             this.dataGridViewUser.Size = new System.Drawing.Size(636, 200);
@@ -856,6 +864,28 @@
             this.dataGridView1.Size = new System.Drawing.Size(553, 230);
             this.dataGridView1.TabIndex = 2;
             // 
+            // UsersID
+            // 
+            this.UsersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsersID.DataPropertyName = "users_id";
+            this.UsersID.HeaderText = "Users ID";
+            this.UsersID.Name = "UsersID";
+            this.UsersID.ReadOnly = true;
+            // 
+            // UsersName
+            // 
+            this.UsersName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsersName.DataPropertyName = "users_name";
+            this.UsersName.HeaderText = "Users Name";
+            this.UsersName.Name = "UsersName";
+            // 
+            // UsersType
+            // 
+            this.UsersType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsersType.DataPropertyName = "userstype_name";
+            this.UsersType.HeaderText = "Users Type";
+            this.UsersType.Name = "UsersType";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -958,6 +988,9 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonAddSchedule;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UsersID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UsersName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UsersType;
     }
 }
 
