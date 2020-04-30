@@ -11,3 +11,15 @@ D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csprojAssemblyReference.cache
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.pdb
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Design.dll
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.dll
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Fonts.dll
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csprojResolveAssemblyReference.cache
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Form1.resources
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Properties.Resources.resources
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.GenerateResource.Cache

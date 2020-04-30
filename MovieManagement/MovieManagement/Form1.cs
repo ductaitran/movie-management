@@ -19,6 +19,7 @@ namespace MovieManagement
             try
             {
                 loadCinemaBoxTab();
+                loadDataGridViewUser();
             }
             catch (Exception ex)
             {
@@ -29,6 +30,29 @@ namespace MovieManagement
         void loadCinemaBoxTab()
         {
             loadOnSelectData();
+        }
+
+        void loadDataGridViewUser()
+        {
+            try
+            {
+                clsConnection.openConnection();
+                string query = @"SELECT Users.users_id, Users.users_name, Users_Type.userstype_name
+                                  from Users INNER JOIN Users_Type ON Users.users_type = Users_Type.userstype_id ";
+                SqlCommand cmd = new SqlCommand(query, clsConnection.con);
+                cmd.ExecuteNonQuery();
+
+                DataSet ds = new DataSet();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds, "Users");
+
+                dataGridViewUser.DataSource = ds.Tables["Users"];
+                clsConnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         void loadComboBoxMovie()
@@ -168,6 +192,11 @@ namespace MovieManagement
         private void comboBoxTime_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadComboBoxCinemaBox();
+        }
+
+        private void metroTabUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
