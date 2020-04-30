@@ -44,10 +44,10 @@ create table Users_Type(
 
 create table Users(
 	users_id nvarchar(5) primary key,
+	users_password nvarchar(200),
 	users_name nvarchar(100),
 	users_type nvarchar(5) foreign key references Users_Type(userstype_id) ON UPDATE CASCADE ON DELETE CASCADE,
 )
-
 
 
 insert into dbo.Cinema_Box values 
@@ -121,6 +121,12 @@ insert into dbo.Users_Type values
 ('US1', 'Admin'),
 ('US2', 'Staff'),
 ('US3', 'Manager')
+
+insert into dbo.Users values 
+('USS1', 'admin', 'Admin1', 'US1'),
+('USS2', 'staff', 'Staff1', 'US2'),
+('USS3', 'manager', 'Manager1', 'US3'),
+('USS4', 'admin', 'Admin2', 'US1');
 
 insert into dbo.Movie values 
 ('mv1', 'Kiem than ti hon', '/source/img/Kiem_than_ti_hon.JPG', 90, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
