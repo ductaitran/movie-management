@@ -11,3 +11,6 @@ D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CopyComplete
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
 D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
