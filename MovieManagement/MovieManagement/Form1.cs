@@ -22,9 +22,5 @@ namespace MovieManagement
             Application.Exit();
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            //lo tay double click, con di me no
-        }
     }
 }
