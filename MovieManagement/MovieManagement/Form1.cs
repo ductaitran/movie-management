@@ -53,7 +53,9 @@ namespace MovieManagement
                 }
 
                 // load time
-                //loadComboBoxTime();
+                loadComboBoxTime();
+                // load cinema box
+                loadComboBoxCinemaBox();
                 clsConnection.closeConnection();
             }
             catch (Exception ex)

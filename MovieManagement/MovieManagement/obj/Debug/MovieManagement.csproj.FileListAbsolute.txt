@@ -1,0 +1,13 @@
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\bin\Debug\MovieManagement.pdb
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Design.dll
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\bin\Debug\MetroFramework.dll
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Fonts.dll
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Form1.resources
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Properties.Resources.resources
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.GenerateResource.cache
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CopyComplete
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+D:\tai lieu dai hoc\dotNET\group proj\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csprojAssemblyReference.cache
