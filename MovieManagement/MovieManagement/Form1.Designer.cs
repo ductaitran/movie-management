@@ -43,7 +43,13 @@
             this.btnSelectMovie = new System.Windows.Forms.Button();
             this.dataGridViewMovie = new System.Windows.Forms.DataGridView();
             this.metroTabCinemaBox = new MetroFramework.Controls.MetroTabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button23 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.textBoxDate = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.button20 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -64,8 +70,15 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonOKCB = new System.Windows.Forms.Button();
             this.btnUpdateBox = new System.Windows.Forms.Button();
             this.dataGridViewCinemaBox = new System.Windows.Forms.DataGridView();
+            this.comboBoxMovie = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxCinemaBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxTime = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.metroTabUser = new MetroFramework.Controls.MetroTabPage();
             this.buttonRemoveUser = new System.Windows.Forms.Button();
@@ -73,29 +86,16 @@
             this.buttonSelectUser = new System.Windows.Forms.Button();
             this.dataGridViewUser = new System.Windows.Forms.DataGridView();
             this.metroTabSchedule = new MetroFramework.Controls.MetroTabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxTime = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxMovie = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxCinemaBox = new System.Windows.Forms.ComboBox();
-            this.textBoxDate = new System.Windows.Forms.TextBox();
-            this.buttonOKCB = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button22 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button23 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonUpdateSchedule = new System.Windows.Forms.Button();
-            this.buttonRemoveSchedule = new System.Windows.Forms.Button();
-            this.dateTimePickerSchedule = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxMovieSchedule = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBoxTimeSchedule = new System.Windows.Forms.TextBox();
+            this.comboBoxMovieSchedule = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePickerSchedule = new System.Windows.Forms.DateTimePicker();
             this.buttonAddSchedule = new System.Windows.Forms.Button();
+            this.buttonRemoveSchedule = new System.Windows.Forms.Button();
+            this.buttonUpdateSchedule = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -144,7 +144,7 @@
             this.metroTabMovie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabMovie.Location = new System.Drawing.Point(0, 47);
             this.metroTabMovie.Name = "metroTabMovie";
-            this.metroTabMovie.SelectedIndex = 3;
+            this.metroTabMovie.SelectedIndex = 1;
             this.metroTabMovie.Size = new System.Drawing.Size(1043, 465);
             this.metroTabMovie.TabIndex = 1;
             this.metroTabMovie.UseSelectable = true;
@@ -311,6 +311,55 @@
             this.metroTabCinemaBox.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabCinemaBox.VerticalScrollbarSize = 10;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(885, 380);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 15);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Unavailable";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(885, 342);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 15);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Available";
+            // 
+            // button23
+            // 
+            this.button23.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button23.Enabled = false;
+            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button23.Location = new System.Drawing.Point(848, 376);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(22, 23);
+            this.button23.TabIndex = 8;
+            this.button23.UseVisualStyleBackColor = false;
+            // 
+            // button22
+            // 
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button22.Location = new System.Drawing.Point(848, 338);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(22, 23);
+            this.button22.TabIndex = 8;
+            this.button22.UseVisualStyleBackColor = true;
+            // 
+            // textBoxDate
+            // 
+            this.textBoxDate.BackColor = System.Drawing.Color.White;
+            this.textBoxDate.Enabled = false;
+            this.textBoxDate.Location = new System.Drawing.Point(62, 23);
+            this.textBoxDate.Name = "textBoxDate";
+            this.textBoxDate.Size = new System.Drawing.Size(127, 21);
+            this.textBoxDate.TabIndex = 7;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -319,6 +368,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(365, 33);
             this.panel2.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(168, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 15);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Screen";
             // 
             // button20
             // 
@@ -520,6 +578,17 @@
             this.button1.Text = "A1";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // buttonOKCB
+            // 
+            this.buttonOKCB.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonOKCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOKCB.Location = new System.Drawing.Point(633, 348);
+            this.buttonOKCB.Name = "buttonOKCB";
+            this.buttonOKCB.Size = new System.Drawing.Size(86, 33);
+            this.buttonOKCB.TabIndex = 5;
+            this.buttonOKCB.Text = "OK";
+            this.buttonOKCB.UseVisualStyleBackColor = false;
+            // 
             // btnUpdateBox
             // 
             this.btnUpdateBox.BackColor = System.Drawing.Color.LightGreen;
@@ -534,20 +603,79 @@
             // dataGridViewCinemaBox
             // 
             this.dataGridViewCinemaBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCinemaBox.Location = new System.Drawing.Point(11, 112);
+            this.dataGridViewCinemaBox.Location = new System.Drawing.Point(11, 121);
             this.dataGridViewCinemaBox.Name = "dataGridViewCinemaBox";
             this.dataGridViewCinemaBox.Size = new System.Drawing.Size(504, 221);
             this.dataGridViewCinemaBox.TabIndex = 4;
+            // 
+            // comboBoxMovie
+            // 
+            this.comboBoxMovie.FormattingEnabled = true;
+            this.comboBoxMovie.Location = new System.Drawing.Point(62, 69);
+            this.comboBoxMovie.Name = "comboBoxMovie";
+            this.comboBoxMovie.Size = new System.Drawing.Size(127, 23);
+            this.comboBoxMovie.TabIndex = 3;
+            this.comboBoxMovie.SelectedIndexChanged += new System.EventHandler(this.comboBoxMovie_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label3.Location = new System.Drawing.Point(8, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Movie";
+            // 
+            // comboBoxCinemaBox
+            // 
+            this.comboBoxCinemaBox.FormattingEnabled = true;
+            this.comboBoxCinemaBox.Location = new System.Drawing.Point(351, 68);
+            this.comboBoxCinemaBox.Name = "comboBoxCinemaBox";
+            this.comboBoxCinemaBox.Size = new System.Drawing.Size(127, 23);
+            this.comboBoxCinemaBox.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label4.Location = new System.Drawing.Point(252, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 17);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Cinema Box:";
+            // 
+            // comboBoxTime
+            // 
+            this.comboBoxTime.FormattingEnabled = true;
+            this.comboBoxTime.Location = new System.Drawing.Point(351, 24);
+            this.comboBoxTime.Name = "comboBoxTime";
+            this.comboBoxTime.Size = new System.Drawing.Size(127, 23);
+            this.comboBoxTime.TabIndex = 3;
+            this.comboBoxTime.SelectedIndexChanged += new System.EventHandler(this.comboBoxTime_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label2.Location = new System.Drawing.Point(252, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Time:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.label1.Location = new System.Drawing.Point(8, 24);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(43, 18);
+            this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Date:";
             // 
@@ -632,168 +760,42 @@
             this.metroTabSchedule.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabSchedule.VerticalScrollbarSize = 10;
             // 
-            // label2
+            // textBoxTimeSchedule
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(252, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 18);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Time:";
+            this.textBoxTimeSchedule.Location = new System.Drawing.Point(735, 130);
+            this.textBoxTimeSchedule.Name = "textBoxTimeSchedule";
+            this.textBoxTimeSchedule.Size = new System.Drawing.Size(157, 20);
+            this.textBoxTimeSchedule.TabIndex = 11;
             // 
-            // comboBoxTime
+            // comboBoxMovieSchedule
             // 
-            this.comboBoxTime.FormattingEnabled = true;
-            this.comboBoxTime.Location = new System.Drawing.Point(351, 24);
-            this.comboBoxTime.Name = "comboBoxTime";
-            this.comboBoxTime.Size = new System.Drawing.Size(127, 23);
-            this.comboBoxTime.TabIndex = 3;
+            this.comboBoxMovieSchedule.FormattingEnabled = true;
+            this.comboBoxMovieSchedule.Location = new System.Drawing.Point(735, 80);
+            this.comboBoxMovieSchedule.Name = "comboBoxMovieSchedule";
+            this.comboBoxMovieSchedule.Size = new System.Drawing.Size(157, 21);
+            this.comboBoxMovieSchedule.TabIndex = 10;
             // 
-            // label3
+            // label10
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Movie";
-
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label10.Location = new System.Drawing.Point(684, 132);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(45, 18);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Time:";
             // 
-            // comboBoxMovie
+            // label9
             // 
-            this.comboBoxMovie.FormattingEnabled = true;
-            this.comboBoxMovie.Location = new System.Drawing.Point(62, 69);
-            this.comboBoxMovie.Name = "comboBoxMovie";
-            this.comboBoxMovie.Size = new System.Drawing.Size(127, 23);
-            this.comboBoxMovie.TabIndex = 3;
-  
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(252, 69);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 18);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Cinema Box:";
-            // 
-            // comboBoxCinemaBox
-            // 
-            this.comboBoxCinemaBox.FormattingEnabled = true;
-            this.comboBoxCinemaBox.Location = new System.Drawing.Point(351, 68);
-            this.comboBoxCinemaBox.Name = "comboBoxCinemaBox";
-            this.comboBoxCinemaBox.Size = new System.Drawing.Size(127, 23);
-            this.comboBoxCinemaBox.TabIndex = 3;
-            // 
-            // textBoxDate
-            // 
-            this.textBoxDate.Enabled = false;
-            this.textBoxDate.Location = new System.Drawing.Point(62, 23);
-            this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.Size = new System.Drawing.Size(127, 21);
-            this.textBoxDate.TabIndex = 7;
-            // 
-            // buttonOKCB
-            // 
-            this.buttonOKCB.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonOKCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOKCB.Location = new System.Drawing.Point(633, 348);
-            this.buttonOKCB.Name = "buttonOKCB";
-            this.buttonOKCB.Size = new System.Drawing.Size(86, 33);
-            this.buttonOKCB.TabIndex = 5;
-            this.buttonOKCB.Text = "OK";
-            this.buttonOKCB.UseVisualStyleBackColor = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(168, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 15);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Screen";
-            // 
-            // button22
-            // 
-            this.button22.Location = new System.Drawing.Point(848, 338);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(22, 23);
-            this.button22.TabIndex = 8;
-            this.button22.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(885, 342);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 15);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Available";
-            // 
-            // button23
-            // 
-            this.button23.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button23.Location = new System.Drawing.Point(848, 376);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(22, 23);
-            this.button23.TabIndex = 8;
-            this.button23.UseVisualStyleBackColor = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(885, 380);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 15);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Unavailable";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(553, 230);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // buttonUpdateSchedule
-            // 
-            this.buttonUpdateSchedule.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonUpdateSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUpdateSchedule.Location = new System.Drawing.Point(374, 282);
-            this.buttonUpdateSchedule.Name = "buttonUpdateSchedule";
-            this.buttonUpdateSchedule.Size = new System.Drawing.Size(86, 33);
-            this.buttonUpdateSchedule.TabIndex = 7;
-            this.buttonUpdateSchedule.Text = "Update";
-            this.buttonUpdateSchedule.UseVisualStyleBackColor = false;
-            // 
-            // buttonRemoveSchedule
-            // 
-            this.buttonRemoveSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRemoveSchedule.Location = new System.Drawing.Point(484, 282);
-            this.buttonRemoveSchedule.Name = "buttonRemoveSchedule";
-            this.buttonRemoveSchedule.Size = new System.Drawing.Size(86, 33);
-            this.buttonRemoveSchedule.TabIndex = 7;
-            this.buttonRemoveSchedule.Text = "Remove";
-            this.buttonRemoveSchedule.UseVisualStyleBackColor = true;
-
-            // 
-            // dateTimePickerSchedule
-            // 
-            this.dateTimePickerSchedule.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePickerSchedule.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerSchedule.Location = new System.Drawing.Point(735, 37);
-            this.dateTimePickerSchedule.Name = "dateTimePickerSchedule";
-            this.dateTimePickerSchedule.Size = new System.Drawing.Size(157, 20);
-            this.dateTimePickerSchedule.TabIndex = 8;
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.White;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label9.Location = new System.Drawing.Point(684, 83);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 18);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Movie:";
             // 
             // label8
             // 
@@ -806,44 +808,14 @@
             this.label8.TabIndex = 9;
             this.label8.Text = "Date:";
             // 
-            // comboBoxMovieSchedule
+            // dateTimePickerSchedule
             // 
-            this.comboBoxMovieSchedule.FormattingEnabled = true;
-            this.comboBoxMovieSchedule.Location = new System.Drawing.Point(735, 80);
-            this.comboBoxMovieSchedule.Name = "comboBoxMovieSchedule";
-            this.comboBoxMovieSchedule.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxMovieSchedule.TabIndex = 10;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label9.Location = new System.Drawing.Point(684, 83);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 18);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Movie:";
-
-            // 
-            // textBoxTimeSchedule
-            // 
-            this.textBoxTimeSchedule.Location = new System.Drawing.Point(735, 130);
-            this.textBoxTimeSchedule.Name = "textBoxTimeSchedule";
-            this.textBoxTimeSchedule.Size = new System.Drawing.Size(157, 20);
-            this.textBoxTimeSchedule.TabIndex = 11;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label10.Location = new System.Drawing.Point(684, 132);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 18);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Time:";
-
+            this.dateTimePickerSchedule.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerSchedule.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerSchedule.Location = new System.Drawing.Point(735, 37);
+            this.dateTimePickerSchedule.Name = "dateTimePickerSchedule";
+            this.dateTimePickerSchedule.Size = new System.Drawing.Size(157, 20);
+            this.dateTimePickerSchedule.TabIndex = 8;
             // 
             // buttonAddSchedule
             // 
@@ -854,7 +826,35 @@
             this.buttonAddSchedule.TabIndex = 7;
             this.buttonAddSchedule.Text = "Add";
             this.buttonAddSchedule.UseVisualStyleBackColor = true;
-
+            // 
+            // buttonRemoveSchedule
+            // 
+            this.buttonRemoveSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemoveSchedule.Location = new System.Drawing.Point(484, 282);
+            this.buttonRemoveSchedule.Name = "buttonRemoveSchedule";
+            this.buttonRemoveSchedule.Size = new System.Drawing.Size(86, 33);
+            this.buttonRemoveSchedule.TabIndex = 7;
+            this.buttonRemoveSchedule.Text = "Remove";
+            this.buttonRemoveSchedule.UseVisualStyleBackColor = true;
+            // 
+            // buttonUpdateSchedule
+            // 
+            this.buttonUpdateSchedule.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonUpdateSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUpdateSchedule.Location = new System.Drawing.Point(374, 282);
+            this.buttonUpdateSchedule.Name = "buttonUpdateSchedule";
+            this.buttonUpdateSchedule.Size = new System.Drawing.Size(86, 33);
+            this.buttonUpdateSchedule.TabIndex = 7;
+            this.buttonUpdateSchedule.Text = "Update";
+            this.buttonUpdateSchedule.UseVisualStyleBackColor = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(17, 31);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(553, 230);
+            this.dataGridView1.TabIndex = 2;
             // 
             // Form1
             // 
