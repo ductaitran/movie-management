@@ -14,7 +14,7 @@ namespace MovieManagement
         {
             try
             {
-                con = new SqlConnection("Server=DESKTOP-NTFJ11I\\DUCTAITRANSQL; Database=SinhVien; User Id=sa; Password=880883");
+                con = new SqlConnection("Server=DESKTOP-NTFJ11I\\DUCTAITRANSQL; Database=MovieManagement; User Id=sa; Password=880883");
                 con.Open();
             }
             catch (Exception)

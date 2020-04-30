@@ -27,10 +27,10 @@ create table Schedule(
 )
 
 create table Box_Status(
-	boxstatus_id nvarchar(5) primary key,
+	boxstatus_id int identity(1, 1) primary key,
 	schedule_id nvarchar(5) foreign key references Schedule(schedule_id),
 	boxslot_id nvarchar(5) foreign key references Box_Slot(boxslot_id),
-	status bit
+	status bit default 0
 /*	CONSTRAINT FK_BoxStatus_Schedule FOREIGN KEY (schedule_id)
     REFERENCES Schedule(schedule_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT FK_BoxStatus_BoxSlot FOREIGN KEY (boxslot_id)
@@ -136,11 +136,34 @@ insert into dbo.Schedule values
 ('SC4', 'CB2', 'mv3', '2020/04/30', '3:00 pm'),
 ('SC5', 'CB2', 'mv4', '2020/04/30', '7:00 pm'),
 ('SC6', 'CB3', 'mv1', '2020/04/30', '5:00 pm'),
-('SC7', 'CB3', 'mv5', '2020/04/30', '10:00 pm')
+--('SC7', 'CB3', 'mv5', '2020/04/30', '10:00 pm')
+
+-- init data for box_status
+insert into dbo.Box_Status 
+select schedule_id, boxslot_id, 0
+from Schedule join Box_Slot on Schedule.cinema_box_id = Box_Slot.cinema_box_id
+
+update Box_Status
+set status = 1
+where schedule_id = 'SC1' and boxslot_id in ('BS1', 'BS10', 'BS11', 'BS12', 'BS13')
 
 
 delete from Box_Slot
 delete from Cinema_Box
 select * from Box_Slot
 select * from Schedule
-select * from Movie
+
+
+-- load movie on schedule
+select distinct movie_name
+from Schedule join Movie on Schedule.movie_id = Movie.movie_id
+
+-- load time on schedule
+select distinct time
+from Schedule
+where movie_id = 'mv1'
+
+-- load cinema on schedule with movie and time
+select cinemabox_name
+from Schedule join Cinema_Box on Schedule.cinema_box_id = Cinema_Box.cinemabox_id
+where time = '5:00 pm' and movie_id = 'mv1'
