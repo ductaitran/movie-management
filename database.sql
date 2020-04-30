@@ -23,7 +23,7 @@ create table Schedule(
 	cinema_box_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id),
 	movie_id nvarchar(5) foreign key references Movie(movie_id),
 	date date,
-	time time
+	time nvarchar(100)
 )
 
 create table Box_Status(
@@ -31,6 +31,17 @@ create table Box_Status(
 	schedule_id nvarchar(5) foreign key references Schedule(schedule_id),
 	boxslot_id nvarchar(5) foreign key references Box_Slot(boxslot_id),
 	status bit
+)
+
+create table Users(
+	users_id nvarchar(5) primary key,
+	users_name nvarchar(100),
+	users_type nvarchar(5) foreign key references Users_Type(userstype_id),
+)
+
+create table Users_Type(
+	userstype_id nvarchar(5) primary key,
+	userstype_name nvarchar(100)
 )
 
 insert into dbo.Cinema_Box values 
