@@ -47,6 +47,11 @@ namespace MovieManagement
         private void btnSelectMovie_Click(object sender, EventArgs e)
         {
             ClassMovie.loadMoviePreview(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
-        }    
+        }
+
+        private void buttonRemoveUser_Click(object sender, EventArgs e)
+        {
+            ClassUser.DeleteUser(ref dataGridViewUser);
+        }
     }
 }
