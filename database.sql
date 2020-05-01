@@ -159,6 +159,26 @@ delete from Cinema_Box
 select * from Box_Status
 select * from Schedule
 
+--Update and insert procedure
+create procedure MovieAddorEdit
+@movie_id nvarchar(5),
+@movie_name nvarchar(100),
+@movie_length int,
+@movie_desc nvarchar(200)
+as
+begin
+	declare @a nvarchar(100)
+	select @a = movie_name from Movie where movie_id = @movie_id
+	if @a is null
+	insert into Movie values (@movie_id, @movie_name, '../../../source/img/default-image.JPG', @movie_length, @movie_desc)
+	else update Movie 
+	set
+	movie_name = @movie_name,
+	movie_length = @movie_length,
+	movie_desc = @movie_desc
+	where movie_id = @movie_id
+end
+
 
 -- load movie on schedule
 select distinct movie_name
