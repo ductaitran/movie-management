@@ -51,7 +51,46 @@ namespace MovieManagement
 
         private void buttonRemoveUser_Click(object sender, EventArgs e)
         {
-            ClassUser.DeleteUser(ref dataGridViewUser);
+            ClassUser.deleteUser(ref dataGridViewUser);
+            ClassUser.loadDataGridViewUser(ref dataGridViewUser);
+            //dataGridViewUser.Update();
+            //dataGridViewUser.Refresh();
+        }
+
+        private void buttonUpdateUser_Click(object sender, EventArgs e)
+        {
+            ClassUser.updateUserOnCLick(ref dataGridViewUser);
+            ClassUser.loadDataGridViewUser(ref dataGridViewUser);
+        }
+
+        private void buttonAddUser_Click(object sender, EventArgs e)
+        {
+            ClassUser.loadAddUserForm(ref dataGridViewUser, ref ComboBoxAddUserType);
+            GroupBoxAddUser.Visible = true;
+
+          
+        }
+
+        private void ButtonFormCancelUser_Click(object sender, EventArgs e)
+        {
+            GroupBoxAddUser.Visible = false;
+            ComboBoxAddUserType.SelectedIndex = -1;
+            TextBoxAddUserID.Text = "";
+            TextBoxAddUserName.Text = "";
+            TextBoxAddUserPassword.Text = "";
+        }
+
+        private void ButtonFormAddUser_Click(object sender, EventArgs e)
+        {
+            ClassUser.addUser(ref dataGridViewUser, ref TextBoxAddUserID, ref TextBoxAddUserName, ref TextBoxAddUserPassword, ref ComboBoxAddUserType);
+            GroupBoxAddUser.Visible = false;
+            ComboBoxAddUserType.SelectedIndex = -1;
+            TextBoxAddUserID.Text = "";
+            TextBoxAddUserName.Text = "";
+            TextBoxAddUserPassword.Text = "";
+            //dataGridViewUser.Controls.Clear();
+            ClassUser.loadDataGridViewUser(ref dataGridViewUser);
+            
         }
     }
 }
