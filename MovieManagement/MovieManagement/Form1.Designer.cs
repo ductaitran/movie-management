@@ -42,7 +42,10 @@
             this.btnAddMoive = new System.Windows.Forms.Button();
             this.btnSelectMovie = new System.Windows.Forms.Button();
             this.dataGridViewMovie = new System.Windows.Forms.DataGridView();
+            this.movie_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.movie_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.movie_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.movie_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabCinemaBox = new MetroFramework.Controls.MetroTabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -74,6 +77,10 @@
             this.buttonOKCB = new System.Windows.Forms.Button();
             this.btnUpdateBox = new System.Windows.Forms.Button();
             this.dataGridViewCinemaBox = new System.Windows.Forms.DataGridView();
+            this.txtBoxSlotId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSlotName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Slot_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxMovie = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxCinemaBox = new System.Windows.Forms.ComboBox();
@@ -98,6 +105,9 @@
             this.buttonUpdateUser = new System.Windows.Forms.Button();
             this.buttonEditUser = new System.Windows.Forms.Button();
             this.dataGridViewUser = new System.Windows.Forms.DataGridView();
+            this.UsersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UsersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxUsersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabSchedule = new MetroFramework.Controls.MetroTabPage();
             this.textBoxTimeSchedule = new System.Windows.Forms.TextBox();
             this.comboBoxMovieSchedule = new System.Windows.Forms.ComboBox();
@@ -109,9 +119,6 @@
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.UsersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UsersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxUsersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -194,7 +201,7 @@
             // 
             this.txtMoviedesc.Enabled = false;
             this.txtMoviedesc.Location = new System.Drawing.Point(867, 54);
-            this.txtMoviedesc.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMoviedesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtMoviedesc.Multiline = true;
             this.txtMoviedesc.Name = "txtMoviedesc";
             this.txtMoviedesc.Size = new System.Drawing.Size(158, 184);
@@ -227,6 +234,7 @@
             this.ptbPreview.Size = new System.Drawing.Size(160, 246);
             this.ptbPreview.TabIndex = 4;
             this.ptbPreview.TabStop = false;
+            this.ptbPreview.Click += new System.EventHandler(this.ptbPreview_Click);
             // 
             // btnRemoveMovie
             // 
@@ -237,6 +245,7 @@
             this.btnRemoveMovie.TabIndex = 3;
             this.btnRemoveMovie.Text = "Remove";
             this.btnRemoveMovie.UseVisualStyleBackColor = true;
+            this.btnRemoveMovie.Click += new System.EventHandler(this.btnRemoveMovie_Click);
             // 
             // btnUpdateMovie
             // 
@@ -248,6 +257,7 @@
             this.btnUpdateMovie.TabIndex = 3;
             this.btnUpdateMovie.Text = "Update";
             this.btnUpdateMovie.UseVisualStyleBackColor = false;
+            this.btnUpdateMovie.Click += new System.EventHandler(this.btnUpdateMovie_Click);
             // 
             // btnAddMoive
             // 
@@ -258,6 +268,7 @@
             this.btnAddMoive.TabIndex = 3;
             this.btnAddMoive.Text = "Add";
             this.btnAddMoive.UseVisualStyleBackColor = true;
+            this.btnAddMoive.Click += new System.EventHandler(this.btnAddMoive_Click);
             // 
             // btnSelectMovie
             // 
@@ -274,20 +285,48 @@
             // 
             this.dataGridViewMovie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMovie.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.movie_name});
+            this.movie_id,
+            this.movie_name,
+            this.movie_length,
+            this.movie_desc});
             this.dataGridViewMovie.Location = new System.Drawing.Point(12, 24);
             this.dataGridViewMovie.Name = "dataGridViewMovie";
             this.dataGridViewMovie.RowHeadersWidth = 51;
             this.dataGridViewMovie.Size = new System.Drawing.Size(554, 246);
             this.dataGridViewMovie.TabIndex = 2;
+            this.dataGridViewMovie.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMovie_CellValueChanged);
+            // 
+            // movie_id
+            // 
+            this.movie_id.DataPropertyName = "movie_id";
+            this.movie_id.HeaderText = "ID";
+            this.movie_id.MinimumWidth = 6;
+            this.movie_id.Name = "movie_id";
+            this.movie_id.Width = 50;
             // 
             // movie_name
             // 
-            this.movie_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.movie_name.DataPropertyName = "movie_name";
             this.movie_name.HeaderText = "Movie Name";
             this.movie_name.MinimumWidth = 6;
             this.movie_name.Name = "movie_name";
+            this.movie_name.Width = 200;
+            // 
+            // movie_length
+            // 
+            this.movie_length.DataPropertyName = "movie_length";
+            this.movie_length.HeaderText = "Length";
+            this.movie_length.MinimumWidth = 6;
+            this.movie_length.Name = "movie_length";
+            this.movie_length.Width = 125;
+            // 
+            // movie_desc
+            // 
+            this.movie_desc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.movie_desc.DataPropertyName = "movie_desc";
+            this.movie_desc.HeaderText = "Description";
+            this.movie_desc.MinimumWidth = 6;
+            this.movie_desc.Name = "movie_desc";
             // 
             // metroTabCinemaBox
             // 
@@ -632,11 +671,55 @@
             // dataGridViewCinemaBox
             // 
             this.dataGridViewCinemaBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCinemaBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.txtBoxSlotId,
+            this.txtSlotName,
+            this.chkStatus,
+            this.Slot_id});
             this.dataGridViewCinemaBox.Location = new System.Drawing.Point(11, 121);
             this.dataGridViewCinemaBox.Name = "dataGridViewCinemaBox";
             this.dataGridViewCinemaBox.RowHeadersWidth = 51;
             this.dataGridViewCinemaBox.Size = new System.Drawing.Size(504, 221);
             this.dataGridViewCinemaBox.TabIndex = 4;
+            this.dataGridViewCinemaBox.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCinemaBox_CellValueChanged);
+            // 
+            // txtBoxSlotId
+            // 
+            this.txtBoxSlotId.DataPropertyName = "boxstatus_id";
+            this.txtBoxSlotId.HeaderText = "BoxSlot_id";
+            this.txtBoxSlotId.MinimumWidth = 6;
+            this.txtBoxSlotId.Name = "txtBoxSlotId";
+            this.txtBoxSlotId.ReadOnly = true;
+            this.txtBoxSlotId.Visible = false;
+            this.txtBoxSlotId.Width = 125;
+            // 
+            // txtSlotName
+            // 
+            this.txtSlotName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.txtSlotName.DataPropertyName = "Slot_name";
+            this.txtSlotName.HeaderText = "Slot_name";
+            this.txtSlotName.MinimumWidth = 6;
+            this.txtSlotName.Name = "txtSlotName";
+            this.txtSlotName.ReadOnly = true;
+            // 
+            // chkStatus
+            // 
+            this.chkStatus.DataPropertyName = "Status";
+            this.chkStatus.HeaderText = "Available";
+            this.chkStatus.MinimumWidth = 6;
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.chkStatus.Width = 125;
+            // 
+            // Slot_id
+            // 
+            this.Slot_id.DataPropertyName = "Slot_id";
+            this.Slot_id.HeaderText = "Slot_id";
+            this.Slot_id.MinimumWidth = 6;
+            this.Slot_id.Name = "Slot_id";
+            this.Slot_id.Visible = false;
+            this.Slot_id.Width = 125;
             // 
             // comboBoxMovie
             // 
@@ -665,6 +748,7 @@
             this.comboBoxCinemaBox.Name = "comboBoxCinemaBox";
             this.comboBoxCinemaBox.Size = new System.Drawing.Size(127, 23);
             this.comboBoxCinemaBox.TabIndex = 3;
+            this.comboBoxCinemaBox.SelectedIndexChanged += new System.EventHandler(this.comboBoxCinemaBox_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -878,8 +962,9 @@
             // 
             this.buttonEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEditUser.Location = new System.Drawing.Point(11, 253);
+            this.buttonEditUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonEditUser.Name = "buttonEditUser";
-            this.buttonEditUser.Size = new System.Drawing.Size(86, 33);
+            this.buttonEditUser.Size = new System.Drawing.Size(81, 33);
             this.buttonEditUser.TabIndex = 6;
             this.buttonEditUser.Text = "Edit";
             this.buttonEditUser.UseVisualStyleBackColor = true;
@@ -900,6 +985,34 @@
             this.dataGridViewUser.Size = new System.Drawing.Size(636, 200);
             this.dataGridViewUser.TabIndex = 2;
             this.dataGridViewUser.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewUser_UserDeletingRow);
+            // 
+            // UsersID
+            // 
+            this.UsersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsersID.DataPropertyName = "users_id";
+            this.UsersID.HeaderText = "Users ID";
+            this.UsersID.MinimumWidth = 6;
+            this.UsersID.Name = "UsersID";
+            this.UsersID.ReadOnly = true;
+            // 
+            // UsersName
+            // 
+            this.UsersName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsersName.DataPropertyName = "users_name";
+            this.UsersName.HeaderText = "Users Name";
+            this.UsersName.MinimumWidth = 6;
+            this.UsersName.Name = "UsersName";
+            this.UsersName.ReadOnly = true;
+            // 
+            // comboBoxUsersType
+            // 
+            this.comboBoxUsersType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.comboBoxUsersType.DataPropertyName = "userstype_name";
+            this.comboBoxUsersType.HeaderText = "Users Type";
+            this.comboBoxUsersType.MinimumWidth = 6;
+            this.comboBoxUsersType.Name = "comboBoxUsersType";
+            this.comboBoxUsersType.ReadOnly = true;
+            this.comboBoxUsersType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // metroTabSchedule
             // 
@@ -1022,32 +1135,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(553, 230);
             this.dataGridView1.TabIndex = 2;
             // 
-            // UsersID
-            // 
-            this.UsersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UsersID.DataPropertyName = "users_id";
-            this.UsersID.HeaderText = "Users ID";
-            this.UsersID.MinimumWidth = 6;
-            this.UsersID.Name = "UsersID";
-            this.UsersID.ReadOnly = true;
-            // 
-            // UsersName
-            // 
-            this.UsersName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UsersName.DataPropertyName = "users_name";
-            this.UsersName.HeaderText = "Users Name";
-            this.UsersName.MinimumWidth = 6;
-            this.UsersName.Name = "UsersName";
-            // 
-            // comboBoxUsersType
-            // 
-            this.comboBoxUsersType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.comboBoxUsersType.DataPropertyName = "userstype_name";
-            this.comboBoxUsersType.HeaderText = "Users Type";
-            this.comboBoxUsersType.MinimumWidth = 6;
-            this.comboBoxUsersType.Name = "comboBoxUsersType";
-            this.comboBoxUsersType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1153,6 +1240,13 @@
         private System.Windows.Forms.Button buttonAddSchedule;
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_name;
         private System.Windows.Forms.TextBox txtMoviedesc;
+
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtBoxSlotId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtSlotName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Slot_id;
+
+
         private System.Windows.Forms.Button buttonAddUser;
         private System.Windows.Forms.TextBox TextBoxAddUserID;
         private System.Windows.Forms.Label LabelAddUserID;
@@ -1168,6 +1262,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UsersID;
         private System.Windows.Forms.DataGridViewTextBoxColumn UsersName;
         private System.Windows.Forms.DataGridViewTextBoxColumn comboBoxUsersType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn movie_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn movie_length;
+        private System.Windows.Forms.DataGridViewTextBoxColumn movie_desc;
     }
 }
 
