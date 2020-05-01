@@ -174,4 +174,11 @@ select cinemabox_name
 from Schedule join Cinema_Box on Schedule.cinemabox_id = Cinema_Box.cinemabox_id
 where schedule_time = '5:00 pm' and movie_id = 'mv1'
 
-select 
+
+select Box_Status.boxslot_id as Slot_id, Box_Slot.boxslot_name as Slot_name, Box_Status.boxstatus_status as status
+                                 from Box_Status 
+                                 join Schedule on Box_Status.schedule_id = Schedule.schedule_id
+                                 join Box_Slot on Box_Status.boxslot_id = Box_Slot.boxslot_id
+                                 join Movie on Schedule.movie_id = Movie.movie_id
+                                 join Cinema_Box on Schedule.cinemabox_id = Cinema_box.cinemabox_id
+                                 where movie_name = 'Kiem than ti hon' and schedule_time = '5:00 pm' and cinemabox_name = '1st Box'

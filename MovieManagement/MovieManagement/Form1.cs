@@ -19,7 +19,7 @@ namespace MovieManagement
             InitializeComponent();
             try
             {
-                ClassCinemaBox.loadCinemaBoxTab(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+                ClassCinemaBox.loadCinemaBoxTab(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
                 ClassUser.loadDataGridViewUser(ref dataGridViewUser);
                 ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
             }
@@ -37,11 +37,13 @@ namespace MovieManagement
         private void comboBoxMovie_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClassCinemaBox.loadComboBoxTime(ref comboBoxMovie, ref comboBoxTime );
+            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
         }
 
         private void comboBoxTime_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClassCinemaBox.loadComboBoxCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
         }
 
         private void btnSelectMovie_Click(object sender, EventArgs e)

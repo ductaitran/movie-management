@@ -148,7 +148,7 @@
             this.metroTabMovie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabMovie.Location = new System.Drawing.Point(0, 47);
             this.metroTabMovie.Name = "metroTabMovie";
-            this.metroTabMovie.SelectedIndex = 2;
+            this.metroTabMovie.SelectedIndex = 1;
             this.metroTabMovie.Size = new System.Drawing.Size(1040, 465);
             this.metroTabMovie.TabIndex = 1;
             this.metroTabMovie.UseSelectable = true;

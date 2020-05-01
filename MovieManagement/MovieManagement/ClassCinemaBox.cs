@@ -11,9 +11,10 @@ namespace MovieManagement
 {
     class ClassCinemaBox
     {
-        public static void loadCinemaBoxTab(ref TextBox textBoxDate, ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox)
+        public static void loadCinemaBoxTab(ref TextBox textBoxDate, ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox, ref DataGridView dataGridViewCinemaBox)
         {
             loadOnSelectData(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+            loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
         }
 
         public static void loadComboBoxMovie(ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox)
@@ -122,12 +123,46 @@ namespace MovieManagement
             }
         }
 
-        public static void loadDataGridViewCinemaBox()
+        public static void loadDataGridViewCinemaBox(ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox, ref DataGridView dataGridViewCinemaBox)
         {
             try
             {
                 clsConnection.openConnection();
-                string query = @"select ";
+                string query = @"select Box_Status.boxslot_id as Slot_id, Box_Slot.boxslot_name as Slot_name, Box_Status.boxstatus_status as Status
+                                 from Box_Status 
+                                 join Schedule on Box_Status.schedule_id = Schedule.schedule_id
+                                 join Box_Slot on Box_Status.boxslot_id = Box_Slot.boxslot_id
+                                 join Movie on Schedule.movie_id = Movie.movie_id
+                                 join Cinema_Box on Schedule.cinemabox_id = Cinema_box.cinemabox_id
+                                 where movie_name = @movie_name and schedule_time = @time and cinemabox_name = @cinemabox_name";
+                SqlCommand cmd = new SqlCommand(query, clsConnection.con);
+
+                SqlParameter movie_name = new SqlParameter("@movie_name", SqlDbType.NVarChar);
+                movie_name.Value = comboBoxMovie.SelectedValue.ToString();
+                SqlParameter time = new SqlParameter("@time", SqlDbType.NVarChar);
+                time.Value = comboBoxTime.SelectedValue.ToString();
+                SqlParameter box_name = new SqlParameter("@cinemabox_name", SqlDbType.NVarChar);
+                box_name.Value = comboBoxCinemaBox.SelectedValue.ToString();
+
+                cmd.Parameters.Add(movie_name);
+                cmd.Parameters.Add(time);
+                cmd.Parameters.Add(box_name);
+                cmd.ExecuteNonQuery();
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                
+                if (dt.Rows.Count > 0 )
+                {
+                    dataGridViewCinemaBox.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("empty table!");
+                }
+                
+
                 clsConnection.closeConnection();
             }
             catch
