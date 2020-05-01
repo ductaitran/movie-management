@@ -126,7 +126,9 @@ namespace MovieManagement
         {
             try
             {
-
+                clsConnection.openConnection();
+                string query = @"select ";
+                clsConnection.closeConnection();
             }
             catch
             {

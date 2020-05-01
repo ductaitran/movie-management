@@ -150,7 +150,7 @@ select schedule_id, boxslot_id, 0
 from Schedule join Box_Slot on Schedule.cinemabox_id = Box_Slot.cinemabox_id
 
 update Box_Status
-set status = 1
+set boxstatus_status = 1
 where schedule_id = 'SC1' and boxslot_id in ('BS1', 'BS10', 'BS11', 'BS12', 'BS13')
 
 
@@ -172,4 +172,6 @@ where movie_id = 'mv1'
 -- load cinema on schedule with movie and time
 select cinemabox_name
 from Schedule join Cinema_Box on Schedule.cinemabox_id = Cinema_Box.cinemabox_id
-where time = '5:00 pm' and movie_id = 'mv1'
+where schedule_time = '5:00 pm' and movie_id = 'mv1'
+
+select 
