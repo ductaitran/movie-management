@@ -4,7 +4,7 @@ Use MovieManagement;
 CREATE TABLE Cinema_Box(
 	cinemabox_id	nvarchar(5) primary key,
 	cinemabox_name nvarchar(20) NOT NULL,
-	vacant			bit NOT NULL);
+	cinemabox_vacant			bit NOT NULL);
 
 CREATE TABLE Movie(
 	movie_id		nvarchar(5)			  primary key,
@@ -14,23 +14,23 @@ CREATE TABLE Movie(
 	movie_desc		nvarchar(200) NOT NULL);
 create table Box_Slot(
 	boxslot_id nvarchar(5) primary key,
-	cinema_box_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	cinemabox_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	boxslot_name nvarchar(5)
 )
 
 create table Schedule(
 	schedule_id nvarchar(5) primary key,
-	cinema_box_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	cinemabox_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	movie_id nvarchar(5) foreign key references Movie(movie_id) ON UPDATE CASCADE ON DELETE CASCADE,
-	date date,
-	time nvarchar(100)
+	schedule_date date,
+	schedule_time nvarchar(100)
 )
 
 create table Box_Status(
 	boxstatus_id int identity(1, 1) primary key,
 	schedule_id nvarchar(5) foreign key references Schedule(schedule_id),
 	boxslot_id nvarchar(5) foreign key references Box_Slot(boxslot_id),
-	status bit default 0
+	boxstatus_status bit default 0
 /*	CONSTRAINT FK_BoxStatus_Schedule FOREIGN KEY (schedule_id)
     REFERENCES Schedule(schedule_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT FK_BoxStatus_BoxSlot FOREIGN KEY (boxslot_id)
