@@ -82,6 +82,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.metroTabUser = new MetroFramework.Controls.MetroTabPage();
+            this.GroupBoxAddUser = new System.Windows.Forms.GroupBox();
+            this.TextBoxAddUserPassword = new System.Windows.Forms.TextBox();
+            this.LabelAddUserType = new System.Windows.Forms.Label();
+            this.LabelAddUserID = new System.Windows.Forms.Label();
+            this.LabelAddUserPassword = new System.Windows.Forms.Label();
+            this.ComboBoxAddUserType = new System.Windows.Forms.ComboBox();
+            this.TextBoxAddUserID = new System.Windows.Forms.TextBox();
+            this.TextBoxAddUserName = new System.Windows.Forms.TextBox();
+            this.LabelAddUserName = new System.Windows.Forms.Label();
+            this.buttonAddUser = new System.Windows.Forms.Button();
             this.buttonRemoveUser = new System.Windows.Forms.Button();
             this.buttonUpdateUser = new System.Windows.Forms.Button();
             this.buttonSelectUser = new System.Windows.Forms.Button();
@@ -100,6 +110,8 @@
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ButtonFormAddUser = new System.Windows.Forms.Button();
+            this.ButtonFormCancelUser = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -109,6 +121,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCinemaBox)).BeginInit();
             this.metroTabUser.SuspendLayout();
+            this.GroupBoxAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
             this.metroTabSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -698,6 +711,8 @@
             // 
             // metroTabUser
             // 
+            this.metroTabUser.Controls.Add(this.GroupBoxAddUser);
+            this.metroTabUser.Controls.Add(this.buttonAddUser);
             this.metroTabUser.Controls.Add(this.buttonRemoveUser);
             this.metroTabUser.Controls.Add(this.buttonUpdateUser);
             this.metroTabUser.Controls.Add(this.buttonSelectUser);
@@ -713,6 +728,105 @@
             this.metroTabUser.VerticalScrollbarBarColor = true;
             this.metroTabUser.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabUser.VerticalScrollbarSize = 10;
+            // 
+            // GroupBoxAddUser
+            // 
+            this.GroupBoxAddUser.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.GroupBoxAddUser.Controls.Add(this.TextBoxAddUserPassword);
+            this.GroupBoxAddUser.Controls.Add(this.LabelAddUserType);
+            this.GroupBoxAddUser.Controls.Add(this.LabelAddUserID);
+            this.GroupBoxAddUser.Controls.Add(this.ButtonFormCancelUser);
+            this.GroupBoxAddUser.Controls.Add(this.ButtonFormAddUser);
+            this.GroupBoxAddUser.Controls.Add(this.LabelAddUserPassword);
+            this.GroupBoxAddUser.Controls.Add(this.ComboBoxAddUserType);
+            this.GroupBoxAddUser.Controls.Add(this.TextBoxAddUserID);
+            this.GroupBoxAddUser.Controls.Add(this.TextBoxAddUserName);
+            this.GroupBoxAddUser.Controls.Add(this.LabelAddUserName);
+            this.GroupBoxAddUser.Location = new System.Drawing.Point(685, 28);
+            this.GroupBoxAddUser.Name = "GroupBoxAddUser";
+            this.GroupBoxAddUser.Size = new System.Drawing.Size(330, 297);
+            this.GroupBoxAddUser.TabIndex = 14;
+            this.GroupBoxAddUser.TabStop = false;
+            this.GroupBoxAddUser.Visible = false;
+            // 
+            // TextBoxAddUserPassword
+            // 
+            this.TextBoxAddUserPassword.Location = new System.Drawing.Point(11, 163);
+            this.TextBoxAddUserPassword.Name = "TextBoxAddUserPassword";
+            this.TextBoxAddUserPassword.Size = new System.Drawing.Size(258, 20);
+            this.TextBoxAddUserPassword.TabIndex = 15;
+            this.TextBoxAddUserPassword.UseSystemPasswordChar = true;
+            // 
+            // LabelAddUserType
+            // 
+            this.LabelAddUserType.AutoSize = true;
+            this.LabelAddUserType.Location = new System.Drawing.Point(10, 196);
+            this.LabelAddUserType.Name = "LabelAddUserType";
+            this.LabelAddUserType.Size = new System.Drawing.Size(56, 13);
+            this.LabelAddUserType.TabIndex = 14;
+            this.LabelAddUserType.Text = "User Type";
+            // 
+            // LabelAddUserID
+            // 
+            this.LabelAddUserID.AutoSize = true;
+            this.LabelAddUserID.Location = new System.Drawing.Point(8, 16);
+            this.LabelAddUserID.Name = "LabelAddUserID";
+            this.LabelAddUserID.Size = new System.Drawing.Size(43, 13);
+            this.LabelAddUserID.TabIndex = 8;
+            this.LabelAddUserID.Text = "User ID";
+            // 
+            // LabelAddUserPassword
+            // 
+            this.LabelAddUserPassword.AutoSize = true;
+            this.LabelAddUserPassword.Location = new System.Drawing.Point(10, 135);
+            this.LabelAddUserPassword.Name = "LabelAddUserPassword";
+            this.LabelAddUserPassword.Size = new System.Drawing.Size(78, 13);
+            this.LabelAddUserPassword.TabIndex = 11;
+            this.LabelAddUserPassword.Text = "User Password";
+            // 
+            // ComboBoxAddUserType
+            // 
+            this.ComboBoxAddUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxAddUserType.FormattingEnabled = true;
+            this.ComboBoxAddUserType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ComboBoxAddUserType.Location = new System.Drawing.Point(11, 225);
+            this.ComboBoxAddUserType.Name = "ComboBoxAddUserType";
+            this.ComboBoxAddUserType.Size = new System.Drawing.Size(258, 21);
+            this.ComboBoxAddUserType.TabIndex = 13;
+            // 
+            // TextBoxAddUserID
+            // 
+            this.TextBoxAddUserID.Location = new System.Drawing.Point(11, 42);
+            this.TextBoxAddUserID.Name = "TextBoxAddUserID";
+            this.TextBoxAddUserID.Size = new System.Drawing.Size(258, 20);
+            this.TextBoxAddUserID.TabIndex = 9;
+            // 
+            // TextBoxAddUserName
+            // 
+            this.TextBoxAddUserName.Location = new System.Drawing.Point(11, 101);
+            this.TextBoxAddUserName.Name = "TextBoxAddUserName";
+            this.TextBoxAddUserName.Size = new System.Drawing.Size(258, 20);
+            this.TextBoxAddUserName.TabIndex = 12;
+            // 
+            // LabelAddUserName
+            // 
+            this.LabelAddUserName.AutoSize = true;
+            this.LabelAddUserName.Location = new System.Drawing.Point(8, 76);
+            this.LabelAddUserName.Name = "LabelAddUserName";
+            this.LabelAddUserName.Size = new System.Drawing.Size(60, 13);
+            this.LabelAddUserName.TabIndex = 10;
+            this.LabelAddUserName.Text = "User Name";
+            // 
+            // buttonAddUser
+            // 
+            this.buttonAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddUser.Location = new System.Drawing.Point(360, 253);
+            this.buttonAddUser.Name = "buttonAddUser";
+            this.buttonAddUser.Size = new System.Drawing.Size(86, 33);
+            this.buttonAddUser.TabIndex = 7;
+            this.buttonAddUser.Text = "Add New";
+            this.buttonAddUser.UseVisualStyleBackColor = true;
+            this.buttonAddUser.Click += new System.EventHandler(this.buttonAddUser_Click);
             // 
             // buttonRemoveUser
             // 
@@ -735,6 +849,7 @@
             this.buttonUpdateUser.TabIndex = 5;
             this.buttonUpdateUser.Text = "Update";
             this.buttonUpdateUser.UseVisualStyleBackColor = false;
+            this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
             // 
             // buttonSelectUser
             // 
@@ -905,6 +1020,28 @@
             this.dataGridView1.Size = new System.Drawing.Size(553, 230);
             this.dataGridView1.TabIndex = 2;
             // 
+            // ButtonFormAddUser
+            // 
+            this.ButtonFormAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonFormAddUser.Location = new System.Drawing.Point(33, 258);
+            this.ButtonFormAddUser.Name = "ButtonFormAddUser";
+            this.ButtonFormAddUser.Size = new System.Drawing.Size(86, 33);
+            this.ButtonFormAddUser.TabIndex = 7;
+            this.ButtonFormAddUser.Text = "Add";
+            this.ButtonFormAddUser.UseVisualStyleBackColor = true;
+            this.ButtonFormAddUser.Click += new System.EventHandler(this.ButtonFormAddUser_Click);
+            // 
+            // ButtonFormCancelUser
+            // 
+            this.ButtonFormCancelUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonFormCancelUser.Location = new System.Drawing.Point(145, 258);
+            this.ButtonFormCancelUser.Name = "ButtonFormCancelUser";
+            this.ButtonFormCancelUser.Size = new System.Drawing.Size(86, 33);
+            this.ButtonFormCancelUser.TabIndex = 7;
+            this.ButtonFormCancelUser.Text = "Cancel";
+            this.ButtonFormCancelUser.UseVisualStyleBackColor = true;
+            this.ButtonFormCancelUser.Click += new System.EventHandler(this.ButtonFormCancelUser_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -929,6 +1066,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCinemaBox)).EndInit();
             this.metroTabUser.ResumeLayout(false);
+            this.GroupBoxAddUser.ResumeLayout(false);
+            this.GroupBoxAddUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).EndInit();
             this.metroTabSchedule.ResumeLayout(false);
             this.metroTabSchedule.PerformLayout();
@@ -1011,6 +1150,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UsersType;
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_name;
         private System.Windows.Forms.TextBox txtMoviedesc;
+        private System.Windows.Forms.Button buttonAddUser;
+        private System.Windows.Forms.TextBox TextBoxAddUserID;
+        private System.Windows.Forms.Label LabelAddUserID;
+        private System.Windows.Forms.ComboBox ComboBoxAddUserType;
+        private System.Windows.Forms.TextBox TextBoxAddUserName;
+        private System.Windows.Forms.Label LabelAddUserPassword;
+        private System.Windows.Forms.Label LabelAddUserName;
+        private System.Windows.Forms.GroupBox GroupBoxAddUser;
+        private System.Windows.Forms.Label LabelAddUserType;
+        private System.Windows.Forms.TextBox TextBoxAddUserPassword;
+        private System.Windows.Forms.Button ButtonFormAddUser;
+        private System.Windows.Forms.Button ButtonFormCancelUser;
     }
 }
 
