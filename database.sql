@@ -4,7 +4,7 @@ Use MovieManagement;
 CREATE TABLE Cinema_Box(
 	cinemabox_id	nvarchar(5) primary key,
 	cinemabox_name nvarchar(20) NOT NULL,
-	vacant			bit NOT NULL);
+	cinemabox_vacant			bit NOT NULL);
 
 CREATE TABLE Movie(
 	movie_id		nvarchar(5)			  primary key,
@@ -14,23 +14,23 @@ CREATE TABLE Movie(
 	movie_desc		nvarchar(200) NOT NULL);
 create table Box_Slot(
 	boxslot_id nvarchar(5) primary key,
-	cinema_box_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	cinemabox_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	boxslot_name nvarchar(5)
 )
 
 create table Schedule(
 	schedule_id nvarchar(5) primary key,
-	cinema_box_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	cinemabox_id nvarchar(5) foreign key references Cinema_Box(cinemabox_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	movie_id nvarchar(5) foreign key references Movie(movie_id) ON UPDATE CASCADE ON DELETE CASCADE,
-	date date,
-	time nvarchar(100)
+	schedule_date date,
+	schedule_time nvarchar(100)
 )
 
 create table Box_Status(
 	boxstatus_id int identity(1, 1) primary key,
 	schedule_id nvarchar(5) foreign key references Schedule(schedule_id),
 	boxslot_id nvarchar(5) foreign key references Box_Slot(boxslot_id),
-	status bit default 0
+	boxstatus_status bit default 0
 /*	CONSTRAINT FK_BoxStatus_Schedule FOREIGN KEY (schedule_id)
     REFERENCES Schedule(schedule_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT FK_BoxStatus_BoxSlot FOREIGN KEY (boxslot_id)
@@ -129,11 +129,11 @@ insert into dbo.Users values
 ('USS4', 'admin', 'Admin2', 'US1');
 
 insert into dbo.Movie values 
-('mv1', 'Kiem than ti hon', '/source/img/Kiem_than_ti_hon.JPG', 90, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
-('mv2', 'Meo may Kuro', '/source/img/kuro.JPG', 100, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
-('mv3', 'Natra', '/source/img/natra.JPG', 180, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
-('mv4', 'My neighbor Totoro', '/source/img/totoro.JPG', 80, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
-('mv5', '1917', '/source/img/1917.JPG', 130, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' );
+('mv1', 'Kiem than ti hon', '../../../source/img/Kiem_than_ti_hon.JPG', 90, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
+('mv2', 'Meo may Kuro', '../../../source/img/kuro.JPG', 100, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
+('mv3', 'Natra', '../../../source/img/natra.JPG', 180, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
+('mv4', 'My neighbor Totoro', '../../../source/img/totoro.JPG', 80, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' ),
+('mv5', '1917', '../../../source/img/1917.JPG', 130, 'Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on' );
 
 insert into dbo.Schedule values 
 ('SC1', 'CB1', 'mv1', '2020/04/30', '5:00 pm'),
@@ -142,7 +142,7 @@ insert into dbo.Schedule values
 ('SC4', 'CB2', 'mv3', '2020/04/30', '3:00 pm'),
 ('SC5', 'CB2', 'mv4', '2020/04/30', '7:00 pm'),
 ('SC6', 'CB3', 'mv1', '2020/04/30', '5:00 pm'),
---('SC7', 'CB3', 'mv5', '2020/04/30', '10:00 pm')
+('SC7', 'CB3', 'mv5', '2020/04/30', '10:00 pm')
 
 -- init data for box_status
 insert into dbo.Box_Status 
@@ -156,7 +156,7 @@ where schedule_id = 'SC1' and boxslot_id in ('BS1', 'BS10', 'BS11', 'BS12', 'BS1
 
 delete from Box_Slot
 delete from Cinema_Box
-select * from Box_Slot
+select * from Box_Status
 select * from Schedule
 
 
