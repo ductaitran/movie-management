@@ -148,7 +148,7 @@
             this.metroTabMovie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabMovie.Location = new System.Drawing.Point(0, 47);
             this.metroTabMovie.Name = "metroTabMovie";
-            this.metroTabMovie.SelectedIndex = 0;
+            this.metroTabMovie.SelectedIndex = 2;
             this.metroTabMovie.Size = new System.Drawing.Size(1040, 465);
             this.metroTabMovie.TabIndex = 1;
             this.metroTabMovie.UseSelectable = true;
@@ -181,7 +181,7 @@
             // 
             this.txtMoviedesc.Enabled = false;
             this.txtMoviedesc.Location = new System.Drawing.Point(867, 54);
-            this.txtMoviedesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMoviedesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtMoviedesc.Multiline = true;
             this.txtMoviedesc.Name = "txtMoviedesc";
             this.txtMoviedesc.Size = new System.Drawing.Size(158, 184);
@@ -320,7 +320,7 @@
             this.metroTabCinemaBox.HorizontalScrollbarSize = 10;
             this.metroTabCinemaBox.Location = new System.Drawing.Point(4, 38);
             this.metroTabCinemaBox.Name = "metroTabCinemaBox";
-            this.metroTabCinemaBox.Size = new System.Drawing.Size(1035, 423);
+            this.metroTabCinemaBox.Size = new System.Drawing.Size(1032, 423);
             this.metroTabCinemaBox.TabIndex = 1;
             this.metroTabCinemaBox.Text = "Cinema Box";
             this.metroTabCinemaBox.VerticalScrollbarBarColor = true;
@@ -707,7 +707,7 @@
             this.metroTabUser.HorizontalScrollbarSize = 10;
             this.metroTabUser.Location = new System.Drawing.Point(4, 38);
             this.metroTabUser.Name = "metroTabUser";
-            this.metroTabUser.Size = new System.Drawing.Size(1035, 423);
+            this.metroTabUser.Size = new System.Drawing.Size(1032, 423);
             this.metroTabUser.TabIndex = 2;
             this.metroTabUser.Text = "User";
             this.metroTabUser.VerticalScrollbarBarColor = true;
@@ -723,6 +723,7 @@
             this.buttonRemoveUser.TabIndex = 4;
             this.buttonRemoveUser.Text = "Remove";
             this.buttonRemoveUser.UseVisualStyleBackColor = true;
+            this.buttonRemoveUser.Click += new System.EventHandler(this.buttonRemoveUser_Click);
             // 
             // buttonUpdateUser
             // 
@@ -800,7 +801,7 @@
             this.metroTabSchedule.HorizontalScrollbarSize = 10;
             this.metroTabSchedule.Location = new System.Drawing.Point(4, 38);
             this.metroTabSchedule.Name = "metroTabSchedule";
-            this.metroTabSchedule.Size = new System.Drawing.Size(1035, 423);
+            this.metroTabSchedule.Size = new System.Drawing.Size(1032, 423);
             this.metroTabSchedule.TabIndex = 3;
             this.metroTabSchedule.Text = "Schedule";
             this.metroTabSchedule.VerticalScrollbarBarColor = true;
