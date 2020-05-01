@@ -147,7 +147,7 @@ insert into dbo.Schedule values
 -- init data for box_status
 insert into dbo.Box_Status 
 select schedule_id, boxslot_id, 0
-from Schedule join Box_Slot on Schedule.cinema_box_id = Box_Slot.cinema_box_id
+from Schedule join Box_Slot on Schedule.cinemabox_id = Box_Slot.cinemabox_id
 
 update Box_Status
 set status = 1
@@ -165,11 +165,11 @@ select distinct movie_name
 from Schedule join Movie on Schedule.movie_id = Movie.movie_id
 
 -- load time on schedule
-select distinct time
+select distinct schedule_time
 from Schedule
 where movie_id = 'mv1'
 
 -- load cinema on schedule with movie and time
 select cinemabox_name
-from Schedule join Cinema_Box on Schedule.cinema_box_id = Cinema_Box.cinemabox_id
+from Schedule join Cinema_Box on Schedule.cinemabox_id = Cinema_Box.cinemabox_id
 where time = '5:00 pm' and movie_id = 'mv1'

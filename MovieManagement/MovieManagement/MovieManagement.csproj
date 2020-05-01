@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassCinemaBox.cs" />
+    <Compile Include="ClassMovie.cs" />
+    <Compile Include="ClassUser.cs" />
     <Compile Include="clsConnection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
