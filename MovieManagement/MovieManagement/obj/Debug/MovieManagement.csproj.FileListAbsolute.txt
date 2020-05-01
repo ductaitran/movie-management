@@ -37,3 +37,17 @@ C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieMana
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CopyComplete
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
 C:\Users\Ngoc Minh\Desktop\projdotNET\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.pdb
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Design.dll
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.dll
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csprojAssemblyReference.cache
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Form1.resources
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.Properties.Resources.resources
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.GenerateResource.cache
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CoreCompileInputs.cache
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CopyComplete
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
+C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
