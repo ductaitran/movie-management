@@ -150,7 +150,7 @@ select schedule_id, boxslot_id, 0
 from Schedule join Box_Slot on Schedule.cinemabox_id = Box_Slot.cinemabox_id
 
 update Box_Status
-set status = 1
+set boxstatus_status = 1
 where schedule_id = 'SC1' and boxslot_id in ('BS1', 'BS10', 'BS11', 'BS12', 'BS13')
 
 
@@ -158,6 +158,9 @@ delete from Box_Slot
 delete from Cinema_Box
 select * from Box_Status
 select * from Schedule
+select * from Users;
+
+UPDATE Users set users_password = 1111 where users_id = 'USS8';
 
 
 -- load movie on schedule

@@ -86,6 +86,8 @@
             this.TextBoxAddUserPassword = new System.Windows.Forms.TextBox();
             this.LabelAddUserType = new System.Windows.Forms.Label();
             this.LabelAddUserID = new System.Windows.Forms.Label();
+            this.ButtonFormCancelUser = new System.Windows.Forms.Button();
+            this.ButtonFormAddUser = new System.Windows.Forms.Button();
             this.LabelAddUserPassword = new System.Windows.Forms.Label();
             this.ComboBoxAddUserType = new System.Windows.Forms.ComboBox();
             this.TextBoxAddUserID = new System.Windows.Forms.TextBox();
@@ -94,11 +96,8 @@
             this.buttonAddUser = new System.Windows.Forms.Button();
             this.buttonRemoveUser = new System.Windows.Forms.Button();
             this.buttonUpdateUser = new System.Windows.Forms.Button();
-            this.buttonSelectUser = new System.Windows.Forms.Button();
+            this.buttonEditUser = new System.Windows.Forms.Button();
             this.dataGridViewUser = new System.Windows.Forms.DataGridView();
-            this.UsersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UsersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UsersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabSchedule = new MetroFramework.Controls.MetroTabPage();
             this.textBoxTimeSchedule = new System.Windows.Forms.TextBox();
             this.comboBoxMovieSchedule = new System.Windows.Forms.ComboBox();
@@ -110,8 +109,9 @@
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ButtonFormAddUser = new System.Windows.Forms.Button();
-            this.ButtonFormCancelUser = new System.Windows.Forms.Button();
+            this.UsersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UsersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxUsersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -715,7 +715,7 @@
             this.metroTabUser.Controls.Add(this.buttonAddUser);
             this.metroTabUser.Controls.Add(this.buttonRemoveUser);
             this.metroTabUser.Controls.Add(this.buttonUpdateUser);
-            this.metroTabUser.Controls.Add(this.buttonSelectUser);
+            this.metroTabUser.Controls.Add(this.buttonEditUser);
             this.metroTabUser.Controls.Add(this.dataGridViewUser);
             this.metroTabUser.HorizontalScrollbarBarColor = true;
             this.metroTabUser.HorizontalScrollbarHighlightOnWheel = false;
@@ -774,6 +774,28 @@
             this.LabelAddUserID.Size = new System.Drawing.Size(43, 13);
             this.LabelAddUserID.TabIndex = 8;
             this.LabelAddUserID.Text = "User ID";
+            // 
+            // ButtonFormCancelUser
+            // 
+            this.ButtonFormCancelUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonFormCancelUser.Location = new System.Drawing.Point(145, 258);
+            this.ButtonFormCancelUser.Name = "ButtonFormCancelUser";
+            this.ButtonFormCancelUser.Size = new System.Drawing.Size(86, 33);
+            this.ButtonFormCancelUser.TabIndex = 7;
+            this.ButtonFormCancelUser.Text = "Cancel";
+            this.ButtonFormCancelUser.UseVisualStyleBackColor = true;
+            this.ButtonFormCancelUser.Click += new System.EventHandler(this.ButtonFormCancelUser_Click);
+            // 
+            // ButtonFormAddUser
+            // 
+            this.ButtonFormAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonFormAddUser.Location = new System.Drawing.Point(33, 258);
+            this.ButtonFormAddUser.Name = "ButtonFormAddUser";
+            this.ButtonFormAddUser.Size = new System.Drawing.Size(86, 33);
+            this.ButtonFormAddUser.TabIndex = 7;
+            this.ButtonFormAddUser.Text = "Add";
+            this.ButtonFormAddUser.UseVisualStyleBackColor = true;
+            this.ButtonFormAddUser.Click += new System.EventHandler(this.ButtonFormAddUser_Click);
             // 
             // LabelAddUserPassword
             // 
@@ -842,6 +864,7 @@
             // buttonUpdateUser
             // 
             this.buttonUpdateUser.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonUpdateUser.Enabled = false;
             this.buttonUpdateUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUpdateUser.Location = new System.Drawing.Point(461, 253);
             this.buttonUpdateUser.Name = "buttonUpdateUser";
@@ -851,53 +874,32 @@
             this.buttonUpdateUser.UseVisualStyleBackColor = false;
             this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
             // 
-            // buttonSelectUser
+            // buttonEditUser
             // 
-            this.buttonSelectUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSelectUser.Location = new System.Drawing.Point(11, 253);
-            this.buttonSelectUser.Name = "buttonSelectUser";
-            this.buttonSelectUser.Size = new System.Drawing.Size(86, 33);
-            this.buttonSelectUser.TabIndex = 6;
-            this.buttonSelectUser.Text = "Select";
-            this.buttonSelectUser.UseVisualStyleBackColor = true;
+            this.buttonEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEditUser.Location = new System.Drawing.Point(11, 253);
+            this.buttonEditUser.Name = "buttonEditUser";
+            this.buttonEditUser.Size = new System.Drawing.Size(86, 33);
+            this.buttonEditUser.TabIndex = 6;
+            this.buttonEditUser.Text = "Edit";
+            this.buttonEditUser.UseVisualStyleBackColor = true;
+            this.buttonEditUser.Click += new System.EventHandler(this.buttonEditUser_Click);
             // 
             // dataGridViewUser
             // 
+            this.dataGridViewUser.AllowUserToAddRows = false;
             this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UsersID,
             this.UsersName,
-            this.UsersType});
+            this.comboBoxUsersType});
             this.dataGridViewUser.Location = new System.Drawing.Point(11, 28);
             this.dataGridViewUser.Name = "dataGridViewUser";
+            this.dataGridViewUser.ReadOnly = true;
             this.dataGridViewUser.RowHeadersWidth = 51;
             this.dataGridViewUser.Size = new System.Drawing.Size(636, 200);
             this.dataGridViewUser.TabIndex = 2;
-            // 
-            // UsersID
-            // 
-            this.UsersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UsersID.DataPropertyName = "users_id";
-            this.UsersID.HeaderText = "Users ID";
-            this.UsersID.MinimumWidth = 6;
-            this.UsersID.Name = "UsersID";
-            this.UsersID.ReadOnly = true;
-            // 
-            // UsersName
-            // 
-            this.UsersName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UsersName.DataPropertyName = "users_name";
-            this.UsersName.HeaderText = "Users Name";
-            this.UsersName.MinimumWidth = 6;
-            this.UsersName.Name = "UsersName";
-            // 
-            // UsersType
-            // 
-            this.UsersType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UsersType.DataPropertyName = "userstype_name";
-            this.UsersType.HeaderText = "Users Type";
-            this.UsersType.MinimumWidth = 6;
-            this.UsersType.Name = "UsersType";
+            this.dataGridViewUser.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridViewUser_UserDeletingRow);
             // 
             // metroTabSchedule
             // 
@@ -1020,27 +1022,31 @@
             this.dataGridView1.Size = new System.Drawing.Size(553, 230);
             this.dataGridView1.TabIndex = 2;
             // 
-            // ButtonFormAddUser
+            // UsersID
             // 
-            this.ButtonFormAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonFormAddUser.Location = new System.Drawing.Point(33, 258);
-            this.ButtonFormAddUser.Name = "ButtonFormAddUser";
-            this.ButtonFormAddUser.Size = new System.Drawing.Size(86, 33);
-            this.ButtonFormAddUser.TabIndex = 7;
-            this.ButtonFormAddUser.Text = "Add";
-            this.ButtonFormAddUser.UseVisualStyleBackColor = true;
-            this.ButtonFormAddUser.Click += new System.EventHandler(this.ButtonFormAddUser_Click);
+            this.UsersID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsersID.DataPropertyName = "users_id";
+            this.UsersID.HeaderText = "Users ID";
+            this.UsersID.MinimumWidth = 6;
+            this.UsersID.Name = "UsersID";
+            this.UsersID.ReadOnly = true;
             // 
-            // ButtonFormCancelUser
+            // UsersName
             // 
-            this.ButtonFormCancelUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonFormCancelUser.Location = new System.Drawing.Point(145, 258);
-            this.ButtonFormCancelUser.Name = "ButtonFormCancelUser";
-            this.ButtonFormCancelUser.Size = new System.Drawing.Size(86, 33);
-            this.ButtonFormCancelUser.TabIndex = 7;
-            this.ButtonFormCancelUser.Text = "Cancel";
-            this.ButtonFormCancelUser.UseVisualStyleBackColor = true;
-            this.ButtonFormCancelUser.Click += new System.EventHandler(this.ButtonFormCancelUser_Click);
+            this.UsersName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsersName.DataPropertyName = "users_name";
+            this.UsersName.HeaderText = "Users Name";
+            this.UsersName.MinimumWidth = 6;
+            this.UsersName.Name = "UsersName";
+            // 
+            // comboBoxUsersType
+            // 
+            this.comboBoxUsersType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.comboBoxUsersType.DataPropertyName = "userstype_name";
+            this.comboBoxUsersType.HeaderText = "Users Type";
+            this.comboBoxUsersType.MinimumWidth = 6;
+            this.comboBoxUsersType.Name = "comboBoxUsersType";
+            this.comboBoxUsersType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Form1
             // 
@@ -1119,7 +1125,7 @@
         private System.Windows.Forms.Button btnAddMoive;
         private System.Windows.Forms.Button buttonRemoveUser;
         private System.Windows.Forms.Button buttonUpdateUser;
-        private System.Windows.Forms.Button buttonSelectUser;
+        private System.Windows.Forms.Button buttonEditUser;
         private System.Windows.Forms.DataGridView dataGridViewUser;
         private MetroFramework.Controls.MetroTabPage metroTabSchedule;
         private System.Windows.Forms.ComboBox comboBoxMovie;
@@ -1145,9 +1151,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonAddSchedule;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UsersID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UsersName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UsersType;
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_name;
         private System.Windows.Forms.TextBox txtMoviedesc;
         private System.Windows.Forms.Button buttonAddUser;
@@ -1162,6 +1165,9 @@
         private System.Windows.Forms.TextBox TextBoxAddUserPassword;
         private System.Windows.Forms.Button ButtonFormAddUser;
         private System.Windows.Forms.Button ButtonFormCancelUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UsersID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UsersName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comboBoxUsersType;
     }
 }
 
