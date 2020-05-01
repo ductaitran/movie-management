@@ -128,7 +128,7 @@ namespace MovieManagement
             try
             {
                 clsConnection.openConnection();
-                string query = @"select Box_Status.boxslot_id as Slot_id, Box_Slot.boxslot_name as Slot_name, Box_Status.boxstatus_status as Status
+                string query = @"select boxstatus_id, Box_Status.boxslot_id as Slot_id, Box_Slot.boxslot_name as Slot_name, Box_Status.boxstatus_status as Status
                                  from Box_Status 
                                  join Schedule on Box_Status.schedule_id = Schedule.schedule_id
                                  join Box_Slot on Box_Status.boxslot_id = Box_Slot.boxslot_id
@@ -142,7 +142,7 @@ namespace MovieManagement
                 SqlParameter time = new SqlParameter("@time", SqlDbType.NVarChar);
                 time.Value = comboBoxTime.SelectedValue.ToString();
                 SqlParameter box_name = new SqlParameter("@cinemabox_name", SqlDbType.NVarChar);
-                box_name.Value = comboBoxCinemaBox.SelectedValue.ToString();
+                box_name.Value = comboBoxCinemaBox.SelectedValue.ToString();               
 
                 cmd.Parameters.Add(movie_name);
                 cmd.Parameters.Add(time);
@@ -156,12 +156,7 @@ namespace MovieManagement
                 if (dt.Rows.Count > 0 )
                 {
                     dataGridViewCinemaBox.DataSource = dt;
-                }
-                else
-                {
-                    MessageBox.Show("empty table!");
-                }
-                
+                }                
 
                 clsConnection.closeConnection();
             }
@@ -182,6 +177,43 @@ namespace MovieManagement
                 loadComboBoxMovie(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
                 /*loadComboBoxTime();
                 loadComboBoxCinemaBox();*/
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void editDataGridViewCinemaBoxStatus(ref DataGridView dataGridViewCinemaBox, ref ComboBox comboBoxMovie, 
+            ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox)
+        {
+            try
+            {
+                clsConnection.openConnection();
+                DataGridViewRow dataRow = dataGridViewCinemaBox.CurrentRow;
+                string query = @"update Box_Status 
+                                set boxstatus_status = @status
+                                where boxstatus_id = @boxstatus_id";
+                SqlCommand cmd = new SqlCommand(query, clsConnection.con);
+                SqlParameter boxstatus_id = new SqlParameter("@boxstatus_id", SqlDbType.NVarChar);
+                boxstatus_id.Value = dataRow.Cells["txtBoxSlotId"].Value;
+                SqlParameter status = new SqlParameter("@status", SqlDbType.Bit);                
+                if (dataRow.Cells["chkStatus"].Value != DBNull.Value && Convert.ToBoolean(dataRow.Cells["chkStatus"].Value) == true)
+                {
+                    MessageBox.Show("1");
+                    status.Value = 1;
+                }
+                else
+                {
+                    MessageBox.Show("0");
+                    status.Value = 0;
+                }
+                cmd.Parameters.Add(status);
+                cmd.Parameters.Add(boxstatus_id);
+                cmd.ExecuteNonQuery();
+                loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+                
+                clsConnection.closeConnection();
             }
             catch (Exception ex)
             {

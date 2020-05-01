@@ -100,6 +100,10 @@
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtBoxSlotId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSlotName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Slot_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -619,11 +623,17 @@
             // dataGridViewCinemaBox
             // 
             this.dataGridViewCinemaBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCinemaBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.txtBoxSlotId,
+            this.txtSlotName,
+            this.chkStatus,
+            this.Slot_id});
             this.dataGridViewCinemaBox.Location = new System.Drawing.Point(11, 121);
             this.dataGridViewCinemaBox.Name = "dataGridViewCinemaBox";
             this.dataGridViewCinemaBox.RowHeadersWidth = 51;
             this.dataGridViewCinemaBox.Size = new System.Drawing.Size(504, 221);
             this.dataGridViewCinemaBox.TabIndex = 4;
+            this.dataGridViewCinemaBox.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCinemaBox_CellValueChanged);
             // 
             // comboBoxMovie
             // 
@@ -652,6 +662,7 @@
             this.comboBoxCinemaBox.Name = "comboBoxCinemaBox";
             this.comboBoxCinemaBox.Size = new System.Drawing.Size(127, 23);
             this.comboBoxCinemaBox.TabIndex = 3;
+            this.comboBoxCinemaBox.SelectedIndexChanged += new System.EventHandler(this.comboBoxCinemaBox_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -905,6 +916,37 @@
             this.dataGridView1.Size = new System.Drawing.Size(553, 230);
             this.dataGridView1.TabIndex = 2;
             // 
+            // txtBoxSlotId
+            // 
+            this.txtBoxSlotId.DataPropertyName = "boxstatus_id";
+            this.txtBoxSlotId.HeaderText = "BoxSlot_id";
+            this.txtBoxSlotId.Name = "txtBoxSlotId";
+            this.txtBoxSlotId.ReadOnly = true;
+            this.txtBoxSlotId.Visible = false;
+            // 
+            // txtSlotName
+            // 
+            this.txtSlotName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.txtSlotName.DataPropertyName = "Slot_name";
+            this.txtSlotName.HeaderText = "Slot_name";
+            this.txtSlotName.Name = "txtSlotName";
+            this.txtSlotName.ReadOnly = true;
+            // 
+            // chkStatus
+            // 
+            this.chkStatus.DataPropertyName = "Status";
+            this.chkStatus.HeaderText = "Available";
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Slot_id
+            // 
+            this.Slot_id.DataPropertyName = "Slot_id";
+            this.Slot_id.HeaderText = "Slot_id";
+            this.Slot_id.Name = "Slot_id";
+            this.Slot_id.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1011,6 +1053,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UsersType;
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_name;
         private System.Windows.Forms.TextBox txtMoviedesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtBoxSlotId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtSlotName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Slot_id;
     }
 }
 

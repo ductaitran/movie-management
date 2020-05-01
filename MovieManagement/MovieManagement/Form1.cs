@@ -55,5 +55,18 @@ namespace MovieManagement
         {
             ClassUser.DeleteUser(ref dataGridViewUser);
         }
+
+        private void comboBoxCinemaBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+        }
+
+        private void dataGridViewCinemaBox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewCinemaBox.CurrentRow != null)
+            {
+                ClassCinemaBox.editDataGridViewCinemaBoxStatus(ref dataGridViewCinemaBox, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+            }
+        }
     }
 }
