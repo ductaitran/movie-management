@@ -158,6 +158,9 @@ delete from Box_Slot
 delete from Cinema_Box
 select * from Box_Status
 select * from Schedule
+select * from Users;
+
+UPDATE Users set users_password = 1111 where users_id = 'USS8';
 
 --Update and insert procedure
 create procedure MovieAddorEdit
