@@ -110,16 +110,16 @@
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-<<<<<<< HEAD
+
             this.txtBoxSlotId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSlotName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Slot_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-||||||| f6e66ee
-=======
+
+
             this.ButtonFormAddUser = new System.Windows.Forms.Button();
             this.ButtonFormCancelUser = new System.Windows.Forms.Button();
->>>>>>> refs/remotes/origin/sub1
+
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -1035,7 +1035,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(553, 230);
             this.dataGridView1.TabIndex = 2;
             // 
-<<<<<<< HEAD
+
             // txtBoxSlotId
             // 
             this.txtBoxSlotId.DataPropertyName = "boxstatus_id";
@@ -1067,8 +1067,7 @@
             this.Slot_id.Name = "Slot_id";
             this.Slot_id.Visible = false;
             // 
-||||||| f6e66ee
-=======
+
             // ButtonFormAddUser
             // 
             this.ButtonFormAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1091,7 +1090,6 @@
             this.ButtonFormCancelUser.UseVisualStyleBackColor = true;
             this.ButtonFormCancelUser.Click += new System.EventHandler(this.ButtonFormCancelUser_Click);
             // 
->>>>>>> refs/remotes/origin/sub1
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1200,13 +1198,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UsersType;
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_name;
         private System.Windows.Forms.TextBox txtMoviedesc;
-<<<<<<< HEAD
+
         private System.Windows.Forms.DataGridViewTextBoxColumn txtBoxSlotId;
         private System.Windows.Forms.DataGridViewTextBoxColumn txtSlotName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Slot_id;
-||||||| f6e66ee
-=======
+
+
         private System.Windows.Forms.Button buttonAddUser;
         private System.Windows.Forms.TextBox TextBoxAddUserID;
         private System.Windows.Forms.Label LabelAddUserID;
@@ -1219,7 +1217,7 @@
         private System.Windows.Forms.TextBox TextBoxAddUserPassword;
         private System.Windows.Forms.Button ButtonFormAddUser;
         private System.Windows.Forms.Button ButtonFormCancelUser;
->>>>>>> refs/remotes/origin/sub1
+
     }
 }
 

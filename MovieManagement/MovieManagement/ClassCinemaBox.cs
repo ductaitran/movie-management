@@ -200,12 +200,12 @@ namespace MovieManagement
                 SqlParameter status = new SqlParameter("@status", SqlDbType.Bit);                
                 if (dataRow.Cells["chkStatus"].Value != DBNull.Value && Convert.ToBoolean(dataRow.Cells["chkStatus"].Value) == true)
                 {
-                    MessageBox.Show("1");
+                   // MessageBox.Show("1");
                     status.Value = 1;
                 }
                 else
                 {
-                    MessageBox.Show("0");
+                    //MessageBox.Show("0");
                     status.Value = 0;
                 }
                 cmd.Parameters.Add(status);
