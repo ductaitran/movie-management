@@ -19,7 +19,7 @@ namespace MovieManagement
             InitializeComponent();
             try
             {
-                ClassCinemaBox.loadCinemaBoxTab(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+                ClassCinemaBox.loadCinemaBoxTab(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
                 ClassUser.loadDataGridViewUser(ref dataGridViewUser);
                 ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
             }
@@ -37,17 +37,16 @@ namespace MovieManagement
         private void comboBoxMovie_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClassCinemaBox.loadComboBoxTime(ref comboBoxMovie, ref comboBoxTime );
+            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
         }
 
         private void comboBoxTime_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClassCinemaBox.loadComboBoxCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
         }
 
-        private void btnSelectMovie_Click(object sender, EventArgs e)
-        {
-            ClassMovie.loadMoviePreview(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
-        }
+ 
 
         private void buttonRemoveUser_Click(object sender, EventArgs e)
         {
@@ -108,6 +107,49 @@ namespace MovieManagement
             ButtonFormAddUser.Visible = false;
             GroupBoxAddUser.Visible = true;
             buttonUpdateUser.Enabled = true;
+
+        private void comboBoxCinemaBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+        }
+
+        private void dataGridViewCinemaBox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewCinemaBox.CurrentRow != null)
+            {
+                ClassCinemaBox.editDataGridViewCinemaBoxStatus(ref dataGridViewCinemaBox, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+            }
+        }
+        private void btnSelectMovie_Click(object sender, EventArgs e)
+        {
+            ClassMovie.loadMoviePreview(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
+        }
+
+
+        private void btnRemoveMovie_Click(object sender, EventArgs e)
+        {
+            ClassMovie.deleteMovie(ref dataGridViewMovie);
+        }
+
+        private void btnUpdateMovie_Click(object sender, EventArgs e)
+        {
+            ClassMovie.updateCover(ref dataGridViewMovie, ref ptbPreview);
+            ClassMovie.EditorAdd(ref dataGridViewMovie);
+        }
+
+        private void dataGridViewMovie_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            ClassMovie.EditorAdd(ref dataGridViewMovie);
+        }
+
+        private void ptbPreview_Click(object sender, EventArgs e)
+        {
+            ClassMovie.setCover(ref dataGridViewMovie, ref ptbPreview);
+        }
+
+        private void btnAddMoive_Click(object sender, EventArgs e)
+        {
+            ClassMovie.EditorAdd(ref dataGridViewMovie);
         }
     }
 }

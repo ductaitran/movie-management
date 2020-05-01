@@ -162,6 +162,26 @@ select * from Users;
 
 UPDATE Users set users_password = 1111 where users_id = 'USS8';
 
+--Update and insert procedure
+create procedure MovieAddorEdit
+@movie_id nvarchar(5),
+@movie_name nvarchar(100),
+@movie_length int,
+@movie_desc nvarchar(200)
+as
+begin
+	declare @a nvarchar(100)
+	select @a = movie_name from Movie where movie_id = @movie_id
+	if @a is null
+	insert into Movie values (@movie_id, @movie_name, '../../../source/img/default-image.JPG', @movie_length, @movie_desc)
+	else update Movie 
+	set
+	movie_name = @movie_name,
+	movie_length = @movie_length,
+	movie_desc = @movie_desc
+	where movie_id = @movie_id
+end
+
 
 -- load movie on schedule
 select distinct movie_name
@@ -175,4 +195,13 @@ where movie_id = 'mv1'
 -- load cinema on schedule with movie and time
 select cinemabox_name
 from Schedule join Cinema_Box on Schedule.cinemabox_id = Cinema_Box.cinemabox_id
-where time = '5:00 pm' and movie_id = 'mv1'
+where schedule_time = '5:00 pm' and movie_id = 'mv1'
+
+
+select Box_Status.boxslot_id as Slot_id, Box_Slot.boxslot_name as Slot_name, Box_Status.boxstatus_status as status
+from Box_Status 
+join Schedule on Box_Status.schedule_id = Schedule.schedule_id
+join Box_Slot on Box_Status.boxslot_id = Box_Slot.boxslot_id
+join Movie on Schedule.movie_id = Movie.movie_id
+join Cinema_Box on Schedule.cinemabox_id = Cinema_box.cinemabox_id
+where movie_name = 'Kiem than ti hon' and schedule_time = '5:00 pm' and cinemabox_name = '3rd Box'
