@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +13,12 @@ namespace MovieManagement
 {
     class ClassCinemaBox
     {
-        public static void loadCinemaBoxTab(ref TextBox textBoxDate, ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox, ref DataGridView dataGridViewCinemaBox)
+        public static void loadCinemaBoxTab(ref TextBox textBoxDate, ref ComboBox comboBoxMovie, 
+            ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox, ref DataGridView dataGridViewCinemaBox, 
+            ref MetroFramework.Controls.MetroTabPage metroTabCinemaBox)
         {
             loadOnSelectData(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
-            loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+            loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox, ref metroTabCinemaBox);
         }
 
         public static void loadComboBoxMovie(ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox)
@@ -123,7 +127,9 @@ namespace MovieManagement
             }
         }
 
-        public static void loadDataGridViewCinemaBox(ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox, ref DataGridView dataGridViewCinemaBox)
+        public static void loadDataGridViewCinemaBox(ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, 
+            ref ComboBox comboBoxCinemaBox, ref DataGridView dataGridViewCinemaBox,
+            ref MetroFramework.Controls.MetroTabPage metroTabCinemaBox)
         {
             try
             {
@@ -134,7 +140,8 @@ namespace MovieManagement
                                  join Box_Slot on Box_Status.boxslot_id = Box_Slot.boxslot_id
                                  join Movie on Schedule.movie_id = Movie.movie_id
                                  join Cinema_Box on Schedule.cinemabox_id = Cinema_box.cinemabox_id
-                                 where movie_name = @movie_name and schedule_time = @time and cinemabox_name = @cinemabox_name";
+                                 where movie_name = @movie_name and schedule_time = @time and cinemabox_name = @cinemabox_name
+                                 order by Slot_name";
                 SqlCommand cmd = new SqlCommand(query, clsConnection.con);
 
                 SqlParameter movie_name = new SqlParameter("@movie_name", SqlDbType.NVarChar);
@@ -156,8 +163,10 @@ namespace MovieManagement
                 if (dt.Rows.Count > 0 )
                 {
                     dataGridViewCinemaBox.DataSource = dt;
-                }                
+                }
 
+                // load Box slot Preview
+                changeSlotStateInPreview(ref dataGridViewCinemaBox, ref metroTabCinemaBox);
                 clsConnection.closeConnection();
             }
             catch
@@ -185,7 +194,8 @@ namespace MovieManagement
         }
 
         public static void editDataGridViewCinemaBoxStatus(ref DataGridView dataGridViewCinemaBox, ref ComboBox comboBoxMovie, 
-            ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox)
+            ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox,
+            ref MetroFramework.Controls.MetroTabPage metroTabCinemaBox)
         {
             try
             {
@@ -211,7 +221,7 @@ namespace MovieManagement
                 cmd.Parameters.Add(status);
                 cmd.Parameters.Add(boxstatus_id);
                 cmd.ExecuteNonQuery();
-                loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+                loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox, ref metroTabCinemaBox);
                 
                 clsConnection.closeConnection();
             }
@@ -220,5 +230,91 @@ namespace MovieManagement
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public static void changeSlotStateInPreview(ref DataGridView dataGridViewCinemaBox, 
+            ref MetroFramework.Controls.MetroTabPage metroTabCinemaBox )
+        {
+            try
+            {
+                foreach (DataGridViewRow dataGrow in dataGridViewCinemaBox.Rows)
+                {
+                    string slotName = dataGrow.Cells["txtSlotName"].Value.ToString();
+                    bool slotState = Convert.ToBoolean(dataGrow.Cells["chkStatus"].Value);
+                    foreach (Control control in metroTabCinemaBox.Controls)
+                    {
+                        Button slotButton = control as Button;
+                        if (slotButton != null && slotButton.Name == slotName)
+                        {
+                            if (slotState == true)
+                            {
+                                slotButton.BackColor = SystemColors.ControlDarkDark;
+                                slotButton.Enabled = false;
+                            }
+                            else
+                            {
+                                slotButton.BackColor = SystemColors.Control;
+                                slotButton.Enabled = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                //MessageBox.Show("in SlotStateChange" + ex.Message);
+            }
+        }
+
+        /*public static void updateStatusByPreview(ref DataGridView dataGridViewCinemaBox, 
+            ref ComboBox comboBoxMovie, ref ComboBox comboBoxTime, ref ComboBox comboBoxCinemaBox,
+             ref MetroFramework.Controls.MetroTabPage metroTabCinemaBox,
+            string slotName)
+        {
+            try
+            {
+                clsConnection.openConnection();
+                string query1 = @"select boxstatus_id
+                                 from Box_Status 
+                                 join Schedule on Box_Status.schedule_id = Schedule.schedule_id
+                                 join Box_Slot on Box_Status.boxslot_id = Box_Slot.boxslot_id
+                                 join Movie on Schedule.movie_id = Movie.movie_id
+                                 join Cinema_Box on Schedule.cinemabox_id = Cinema_box.cinemabox_id
+                                 where movie_name = @movie_name and schedule_time = @time and cinemabox_name = @cinemabox_name and boxslot_name = @slotname";
+                SqlCommand cmd1 = new SqlCommand(query1, clsConnection.con);
+
+                SqlParameter movie_name = new SqlParameter("@movie_name", SqlDbType.NVarChar);
+                movie_name.Value = comboBoxMovie.SelectedValue.ToString();
+                SqlParameter time = new SqlParameter("@time", SqlDbType.NVarChar);
+                time.Value = comboBoxTime.SelectedValue.ToString();
+                SqlParameter box_name = new SqlParameter("@cinemabox_name", SqlDbType.NVarChar);
+                box_name.Value = comboBoxCinemaBox.SelectedValue.ToString();
+                
+                cmd1.Parameters.Add(movie_name);
+                cmd1.Parameters.Add(time);
+                cmd1.Parameters.Add(box_name);
+                string boxstatus_id = Convert.ToString(cmd1.ExecuteScalar());
+
+                string query2 = @"update Box_Status 
+                                set boxstatus_status = @status
+                                where boxstatus_id = @boxstatus_id";
+                SqlCommand cmd2 = new SqlCommand(query2, clsConnection.con);
+                SqlParameter id = new SqlParameter("@boxstatus_id", SqlDbType.NVarChar);
+                id.Value = boxstatus_id;
+                SqlParameter status = new SqlParameter("@status", SqlDbType.Bit);
+                status.Value = 1;
+
+                cmd2.Parameters.Add(id);
+                cmd2.Parameters.Add(status);
+                cmd2.ExecuteNonQuery();
+
+                // reload data
+                loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox, ref metroTabCinemaBox);
+                clsConnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }*/
     }
 }
