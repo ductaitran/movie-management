@@ -14,7 +14,7 @@ namespace MovieManagement
         {
             try
             {
-                con = new SqlConnection("Data Source=DESKTOP-61O1BP9\\MINH;Initial Catalog=MovieManagement;Integrated Security=True");
+                con = new SqlConnection("Data Source=HOANGMINH;Initial Catalog=MovieManagement;Integrated Security=True");
                 con.Open();
             }
             catch (Exception)
