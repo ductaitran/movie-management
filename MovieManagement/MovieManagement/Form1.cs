@@ -29,6 +29,7 @@ namespace MovieManagement
                 CinemaBox.changeSlotStateInPreview();
                 ClassUser.loadDataGridViewUser(ref dataGridViewUser);
                 ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
+				LoadScheduleTab();
 
             }
             catch (Exception ex)
@@ -217,7 +218,132 @@ namespace MovieManagement
             GroupBoxAddUser.Visible = true;
             buttonUpdateUser.Enabled = true;
         }
+        private void LoadScheduleTab()
+        {
+            ClassSchedule.InitilizeDataGridView(ref dataGridViewSchedule, monthCalendar1.SelectionRange.Start);
+            dataGridViewSchedule.CellValueChanged += new DataGridViewCellEventHandler(dataGridViewSchedule_CellValueChanged);
+            buttonSaveSchedule.Enabled = false;
+        }
 
-   
+        private void dataGridViewSchedule_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            buttonSaveSchedule.Enabled = true;
+        }
+
+        private void buttonUpdateSchedule_Click(object sender, EventArgs e)
+        {
+            if (ClassSchedule.UpdateData(ref dataGridViewSchedule, monthCalendar1.SelectionRange.Start))
+            {
+                Debug.WriteLine("Updated");
+                buttonSaveSchedule.Enabled = false;
+            }
+            else Debug.WriteLine("Update Fail");
+        }
+
+        private void buttonRemoveSchedule_Click(object sender, EventArgs e)
+        {
+            if (ClassSchedule.RemoveData(ref dataGridViewSchedule))
+            {
+                Debug.WriteLine("Removed");
+                buttonSaveSchedule.Enabled = false;
+                buttonUpdateSchedule.PerformClick();
+            }
+            else
+            {
+                MessageBox.Show("Select a valid row and try again");
+                Debug.WriteLine("Remove Fail");
+            }
+        }
+
+        private void buttonSaveSchedule_Click(object sender, EventArgs e)
+        {
+            buttonSaveSchedule.Enabled = false;
+            int result;
+            foreach (DataGridViewRow DataGridViewRow in dataGridViewSchedule.Rows)
+            {
+                try
+                {
+                    if (Convert.ToString(DataGridViewRow.Cells[1].Value) != "")// du lieu rong la hang cuoi cung datagridview tu tao
+                    {
+                        Debug.WriteLine("cinema box after update: " + Convert.ToString(DataGridViewRow.Cells[1].Value));
+                        Debug.WriteLine("0: " + Convert.ToString(DataGridViewRow.Cells[0].Value) + " 1: " + Convert.ToString(DataGridViewRow.Cells[1].Value) + " 2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + " 3: " + Convert.ToString(DataGridViewRow.Cells[3].Value) + " 4: " + Convert.ToString(DataGridViewRow.Cells[4].Value) + " 5: " + Convert.ToString(DataGridViewRow.Cells[5].Value));
+                        Debug.WriteLine("inserting...");
+                        string query = @"UPDATE Schedule SET 
+                                cinemabox_id = @cinemabox_id,
+                                movie_id = @movie_id,
+                                schedule_date = @schedule_date,
+                                schedule_time = @schedule_time
+                                WHERE schedule_id = @schedule_id";
+                        clsConnection.openConnection();
+                        SqlCommand command = new SqlCommand(query, clsConnection.con);
+                        Debug.WriteLine("0: " + Convert.ToString(DataGridViewRow.Cells[0].Value) + " 1: " + Convert.ToString(DataGridViewRow.Cells[1].Value) + " 2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + " 5: " + Convert.ToString(DataGridViewRow.Cells[5].Value) + " 6: " + Convert.ToString(DataGridViewRow.Cells[6].Value));
+                        command.Parameters.AddWithValue("@cinemabox_id", Convert.ToString(DataGridViewRow.Cells[1].Value));
+                        command.Parameters.AddWithValue("@movie_id", Convert.ToString(DataGridViewRow.Cells[2].Value));
+                        command.Parameters.AddWithValue("@schedule_date", Convert.ToDateTime(DataGridViewRow.Cells[5].Value));
+                        command.Parameters.AddWithValue("@schedule_time", Convert.ToString(DataGridViewRow.Cells[6].Value));
+                        command.Parameters.AddWithValue("@schedule_id", Convert.ToString(DataGridViewRow.Cells[0].Value));
+                        result = command.ExecuteNonQuery();
+                        Debug.WriteLine("Result: " + result);
+                        if (result == 0)
+                        {
+                            if (!ClassSchedule.InsertData(Convert.ToString(DataGridViewRow.Cells[1].Value),
+                                Convert.ToString(DataGridViewRow.Cells[2].Value),
+                                Convert.ToDateTime(DataGridViewRow.Cells[5].Value),
+                                Convert.ToString(DataGridViewRow.Cells[6].Value),
+                                Convert.ToString(DataGridViewRow.Cells[0].Value)
+                                ))
+                            {
+                                MessageBox.Show("Insert fail, please check again!");
+                            }
+                        }
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show("Input is invalid: " + err.Message);
+                    clsConnection.closeConnection();
+                }
+            }
+            buttonUpdateSchedule.PerformClick();
+            clsConnection.closeConnection();
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            dateTimePickerSchedule.Value = monthCalendar1.SelectionRange.Start;
+            LoadScheduleTab();
+        }
+
+        private void dataGridViewSchedule_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dataGridViewSchedule.CurrentCell.ColumnIndex == 1 || dataGridViewSchedule.CurrentCell.ColumnIndex == 3 && e.Control is ComboBox)
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.SelectedIndexChanged -= new EventHandler(comboBox_SeletedIndexChanged);
+                    comboBox.SelectedIndexChanged += new EventHandler(comboBox_SeletedIndexChanged);
+                }
+            }
+        }
+        private void comboBox_SeletedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            buttonSaveSchedule.Enabled = true;
+        }
+
+        private void buttonSaveSchedule_EnabledChanged(object sender, EventArgs e)
+        {
+            if (((Button)sender).Enabled)
+            {
+                buttonSaveSchedule.BackColor = Color.CornflowerBlue;
+                buttonSaveSchedule.ForeColor = Color.White;
+            }
+            else
+            {
+                buttonSaveSchedule.BackColor = Color.Transparent;
+                buttonSaveSchedule.ForeColor = Color.CornflowerBlue;
+            }
+        }
     }
 }

@@ -47,6 +47,7 @@
             this.movie_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.movie_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabCinemaBox = new MetroFramework.Controls.MetroTabPage();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -76,6 +77,10 @@
             this.buttonOKCB = new System.Windows.Forms.Button();
             this.btnUpdateBox = new System.Windows.Forms.Button();
             this.dataGridViewCinemaBox = new System.Windows.Forms.DataGridView();
+            this.txtBoxSlotId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSlotName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Slot_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxMovie = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxCinemaBox = new System.Windows.Forms.ComboBox();
@@ -104,21 +109,13 @@
             this.UsersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxUsersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabSchedule = new MetroFramework.Controls.MetroTabPage();
-            this.textBoxTimeSchedule = new System.Windows.Forms.TextBox();
-            this.comboBoxMovieSchedule = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePickerSchedule = new System.Windows.Forms.DateTimePicker();
-            this.buttonAddSchedule = new System.Windows.Forms.Button();
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtBoxSlotId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSlotName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Slot_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
+            this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.buttonSaveSchedule = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -131,7 +128,7 @@
             this.GroupBoxAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
             this.metroTabSchedule.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -168,7 +165,7 @@
             this.metroTabMovie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabMovie.Location = new System.Drawing.Point(0, 47);
             this.metroTabMovie.Name = "metroTabMovie";
-            this.metroTabMovie.SelectedIndex = 1;
+            this.metroTabMovie.SelectedIndex = 3;
             this.metroTabMovie.Size = new System.Drawing.Size(1040, 465);
             this.metroTabMovie.TabIndex = 1;
             this.metroTabMovie.UseSelectable = true;
@@ -378,6 +375,16 @@
             this.metroTabCinemaBox.VerticalScrollbarBarColor = true;
             this.metroTabCinemaBox.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabCinemaBox.VerticalScrollbarSize = 10;
+            // 
+            // dateTimePickerDate
+            // 
+            this.dateTimePickerDate.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerDate.Location = new System.Drawing.Point(62, 22);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(127, 21);
+            this.dateTimePickerDate.TabIndex = 11;
+            this.dateTimePickerDate.ValueChanged += new System.EventHandler(this.dateTimePickerDate_ValueChanged);
             // 
             // panel4
             // 
@@ -693,6 +700,42 @@
             this.dataGridViewCinemaBox.TabIndex = 4;
             this.dataGridViewCinemaBox.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCinemaBox_CellValueChanged);
             // 
+            // txtBoxSlotId
+            // 
+            this.txtBoxSlotId.DataPropertyName = "boxstatus_id";
+            this.txtBoxSlotId.HeaderText = "BoxSlot_id";
+            this.txtBoxSlotId.MinimumWidth = 6;
+            this.txtBoxSlotId.Name = "txtBoxSlotId";
+            this.txtBoxSlotId.ReadOnly = true;
+            this.txtBoxSlotId.Visible = false;
+            this.txtBoxSlotId.Width = 125;
+            // 
+            // txtSlotName
+            // 
+            this.txtSlotName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.txtSlotName.DataPropertyName = "Slot_name";
+            this.txtSlotName.HeaderText = "Slot_name";
+            this.txtSlotName.MinimumWidth = 6;
+            this.txtSlotName.Name = "txtSlotName";
+            this.txtSlotName.ReadOnly = true;
+            // 
+            // chkStatus
+            // 
+            this.chkStatus.DataPropertyName = "Status";
+            this.chkStatus.HeaderText = "Available";
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Slot_id
+            // 
+            this.Slot_id.DataPropertyName = "Slot_id";
+            this.Slot_id.HeaderText = "Slot_id";
+            this.Slot_id.MinimumWidth = 6;
+            this.Slot_id.Name = "Slot_id";
+            this.Slot_id.Visible = false;
+            this.Slot_id.Width = 125;
+            // 
             // comboBoxMovie
             // 
             this.comboBoxMovie.FormattingEnabled = true;
@@ -988,16 +1031,13 @@
             // 
             // metroTabSchedule
             // 
-            this.metroTabSchedule.Controls.Add(this.textBoxTimeSchedule);
-            this.metroTabSchedule.Controls.Add(this.comboBoxMovieSchedule);
-            this.metroTabSchedule.Controls.Add(this.label10);
-            this.metroTabSchedule.Controls.Add(this.label9);
+            this.metroTabSchedule.Controls.Add(this.buttonSaveSchedule);
+            this.metroTabSchedule.Controls.Add(this.monthCalendar1);
             this.metroTabSchedule.Controls.Add(this.label8);
             this.metroTabSchedule.Controls.Add(this.dateTimePickerSchedule);
-            this.metroTabSchedule.Controls.Add(this.buttonAddSchedule);
             this.metroTabSchedule.Controls.Add(this.buttonRemoveSchedule);
             this.metroTabSchedule.Controls.Add(this.buttonUpdateSchedule);
-            this.metroTabSchedule.Controls.Add(this.dataGridView1);
+            this.metroTabSchedule.Controls.Add(this.dataGridViewSchedule);
             this.metroTabSchedule.HorizontalScrollbarBarColor = true;
             this.metroTabSchedule.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabSchedule.HorizontalScrollbarSize = 10;
@@ -1010,49 +1050,12 @@
             this.metroTabSchedule.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabSchedule.VerticalScrollbarSize = 10;
             // 
-            // textBoxTimeSchedule
-            // 
-            this.textBoxTimeSchedule.Location = new System.Drawing.Point(735, 130);
-            this.textBoxTimeSchedule.Name = "textBoxTimeSchedule";
-            this.textBoxTimeSchedule.Size = new System.Drawing.Size(157, 20);
-            this.textBoxTimeSchedule.TabIndex = 11;
-            // 
-            // comboBoxMovieSchedule
-            // 
-            this.comboBoxMovieSchedule.FormattingEnabled = true;
-            this.comboBoxMovieSchedule.Location = new System.Drawing.Point(735, 80);
-            this.comboBoxMovieSchedule.Name = "comboBoxMovieSchedule";
-            this.comboBoxMovieSchedule.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxMovieSchedule.TabIndex = 10;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label10.Location = new System.Drawing.Point(684, 132);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 18);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Time:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label9.Location = new System.Drawing.Point(684, 83);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 18);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Movie:";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.White;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label8.Location = new System.Drawing.Point(684, 37);
+            this.label8.Location = new System.Drawing.Point(730, 37);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 18);
             this.label8.TabIndex = 9;
@@ -1061,97 +1064,73 @@
             // dateTimePickerSchedule
             // 
             this.dateTimePickerSchedule.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerSchedule.Enabled = false;
             this.dateTimePickerSchedule.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerSchedule.Location = new System.Drawing.Point(735, 37);
+            this.dateTimePickerSchedule.Location = new System.Drawing.Point(781, 37);
             this.dateTimePickerSchedule.Name = "dateTimePickerSchedule";
             this.dateTimePickerSchedule.Size = new System.Drawing.Size(157, 20);
             this.dateTimePickerSchedule.TabIndex = 8;
             // 
-            // buttonAddSchedule
-            // 
-            this.buttonAddSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddSchedule.Location = new System.Drawing.Point(735, 187);
-            this.buttonAddSchedule.Name = "buttonAddSchedule";
-            this.buttonAddSchedule.Size = new System.Drawing.Size(86, 33);
-            this.buttonAddSchedule.TabIndex = 7;
-            this.buttonAddSchedule.Text = "Add";
-            this.buttonAddSchedule.UseVisualStyleBackColor = true;
-            // 
             // buttonRemoveSchedule
             // 
+            this.buttonRemoveSchedule.BackColor = System.Drawing.Color.LightCoral;
             this.buttonRemoveSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRemoveSchedule.Location = new System.Drawing.Point(484, 282);
+            this.buttonRemoveSchedule.ForeColor = System.Drawing.Color.DarkRed;
+            this.buttonRemoveSchedule.Location = new System.Drawing.Point(530, 282);
             this.buttonRemoveSchedule.Name = "buttonRemoveSchedule";
             this.buttonRemoveSchedule.Size = new System.Drawing.Size(86, 33);
             this.buttonRemoveSchedule.TabIndex = 7;
             this.buttonRemoveSchedule.Text = "Remove";
-            this.buttonRemoveSchedule.UseVisualStyleBackColor = true;
+            this.buttonRemoveSchedule.UseVisualStyleBackColor = false;
+            this.buttonRemoveSchedule.Click += new System.EventHandler(this.buttonRemoveSchedule_Click);
             // 
             // buttonUpdateSchedule
             // 
             this.buttonUpdateSchedule.BackColor = System.Drawing.Color.LightGreen;
             this.buttonUpdateSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUpdateSchedule.Location = new System.Drawing.Point(374, 282);
+            this.buttonUpdateSchedule.ForeColor = System.Drawing.Color.SeaGreen;
+            this.buttonUpdateSchedule.Location = new System.Drawing.Point(423, 282);
             this.buttonUpdateSchedule.Name = "buttonUpdateSchedule";
             this.buttonUpdateSchedule.Size = new System.Drawing.Size(86, 33);
             this.buttonUpdateSchedule.TabIndex = 7;
-            this.buttonUpdateSchedule.Text = "Update";
+            this.buttonUpdateSchedule.Text = "Refresh";
             this.buttonUpdateSchedule.UseVisualStyleBackColor = false;
+            this.buttonUpdateSchedule.Click += new System.EventHandler(this.buttonUpdateSchedule_Click);
             // 
-            // dataGridView1
+            // dataGridViewSchedule
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(553, 230);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridViewSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSchedule.Location = new System.Drawing.Point(63, 31);
+            this.dataGridViewSchedule.Name = "dataGridViewSchedule";
+            this.dataGridViewSchedule.RowHeadersWidth = 51;
+            this.dataGridViewSchedule.Size = new System.Drawing.Size(553, 230);
+            this.dataGridViewSchedule.TabIndex = 2;
+            this.dataGridViewSchedule.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSchedule_CellValueChanged);
+            this.dataGridViewSchedule.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewSchedule_EditingControlShowing);
             // 
-            // txtBoxSlotId
+            // monthCalendar1
             // 
-            this.txtBoxSlotId.DataPropertyName = "boxstatus_id";
-            this.txtBoxSlotId.HeaderText = "BoxSlot_id";
-            this.txtBoxSlotId.MinimumWidth = 6;
-            this.txtBoxSlotId.Name = "txtBoxSlotId";
-            this.txtBoxSlotId.ReadOnly = true;
-            this.txtBoxSlotId.Visible = false;
-            this.txtBoxSlotId.Width = 125;
+            this.monthCalendar1.Location = new System.Drawing.Point(733, 99);
+            this.monthCalendar1.MaxSelectionCount = 1;
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.ShowTodayCircle = false;
+            this.monthCalendar1.TabIndex = 10;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
-            // txtSlotName
+            // buttonSaveSchedule
             // 
-            this.txtSlotName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.txtSlotName.DataPropertyName = "Slot_name";
-            this.txtSlotName.HeaderText = "Slot_name";
-            this.txtSlotName.MinimumWidth = 6;
-            this.txtSlotName.Name = "txtSlotName";
-            this.txtSlotName.ReadOnly = true;
-            // 
-            // chkStatus
-            // 
-            this.chkStatus.DataPropertyName = "Status";
-            this.chkStatus.HeaderText = "Available";
-            this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Slot_id
-            // 
-            this.Slot_id.DataPropertyName = "Slot_id";
-            this.Slot_id.HeaderText = "Slot_id";
-            this.Slot_id.MinimumWidth = 6;
-            this.Slot_id.Name = "Slot_id";
-            this.Slot_id.Visible = false;
-            this.Slot_id.Width = 125;
-            // 
-            // dateTimePickerDate
-            // 
-            this.dateTimePickerDate.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerDate.Location = new System.Drawing.Point(62, 22);
-            this.dateTimePickerDate.Name = "dateTimePickerDate";
-            this.dateTimePickerDate.Size = new System.Drawing.Size(127, 21);
-            this.dateTimePickerDate.TabIndex = 11;
-            this.dateTimePickerDate.ValueChanged += new System.EventHandler(this.dateTimePickerDate_ValueChanged);
+            this.buttonSaveSchedule.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSaveSchedule.Enabled = false;
+            this.buttonSaveSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveSchedule.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonSaveSchedule.Location = new System.Drawing.Point(63, 282);
+            this.buttonSaveSchedule.Name = "buttonSaveSchedule";
+            this.buttonSaveSchedule.Size = new System.Drawing.Size(86, 33);
+            this.buttonSaveSchedule.TabIndex = 11;
+            this.buttonSaveSchedule.Text = "Save";
+            this.buttonSaveSchedule.UseVisualStyleBackColor = false;
+            this.buttonSaveSchedule.EnabledChanged += new System.EventHandler(this.buttonSaveSchedule_EnabledChanged);
+            this.buttonSaveSchedule.Click += new System.EventHandler(this.buttonSaveSchedule_Click);
             // 
             // Form1
             // 
@@ -1182,7 +1161,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).EndInit();
             this.metroTabSchedule.ResumeLayout(false);
             this.metroTabSchedule.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchedule)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1243,16 +1222,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonOKCB;
-        private System.Windows.Forms.TextBox textBoxTimeSchedule;
-        private System.Windows.Forms.ComboBox comboBoxMovieSchedule;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePickerSchedule;
         private System.Windows.Forms.Button buttonRemoveSchedule;
         private System.Windows.Forms.Button buttonUpdateSchedule;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button buttonAddSchedule;
+        private System.Windows.Forms.DataGridView dataGridViewSchedule;
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_name;
         private System.Windows.Forms.TextBox txtMoviedesc;
 
@@ -1282,6 +1256,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Slot_id;
         private System.Windows.Forms.DateTimePicker dateTimePickerDate;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Button buttonSaveSchedule;
     }
 }
 

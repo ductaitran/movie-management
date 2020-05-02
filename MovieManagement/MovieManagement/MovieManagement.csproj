@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ClassCinemaBox.cs" />
     <Compile Include="ClassMovie.cs" />
+    <Compile Include="ClassSchedule.cs" />
     <Compile Include="ClassUser.cs" />
     <Compile Include="clsConnection.cs" />
     <Compile Include="Form1.cs">
