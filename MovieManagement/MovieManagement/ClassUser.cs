@@ -76,7 +76,8 @@ namespace MovieManagement
         {
             try
             {
-                string id = dataGridViewUser.SelectedCells[0].Value.ToString();
+                int selectedrowindex = dataGridViewUser.SelectedCells[0].RowIndex;
+                string id = dataGridViewUser.Rows[selectedrowindex].Cells[0].Value.ToString();
                 DialogResult deleted = MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (deleted == DialogResult.Yes)
                 {
@@ -164,10 +165,11 @@ namespace MovieManagement
         {
             try
             {
-                string id = dataGridViewUser.SelectedCells[0].Value.ToString();
+                int selectedrowindex = dataGridViewUser.SelectedCells[0].RowIndex;
+                string id = dataGridViewUser.Rows[selectedrowindex].Cells[0].Value.ToString();
                 TextBoxAddUserID.ReadOnly = true;
                 TextBoxAddUserID.Text = id;
-                TextBoxAddUserName.Text = dataGridViewUser.SelectedCells[1].Value.ToString();
+                TextBoxAddUserName.Text = dataGridViewUser.Rows[selectedrowindex].Cells[1].Value.ToString();
 
                 clsConnection.openConnection();
                 string query = @"SELECT * FROM Users_Type";
