@@ -16,13 +16,17 @@ namespace MovieManagement
     public partial class Form1 : Form
     {
         private List<string> SlotnameList = new List<string>();
+        private ClassCinemaBox CinemaBox;
         public Form1()
         {
             InitializeComponent();
+            // create an new object of ClassCinemaBox, bind references
+            CinemaBox = new ClassCinemaBox(dateTimePickerDate, comboBoxMovie, comboBoxTime, comboBoxCinemaBox, 
+                dataGridViewCinemaBox, metroTabCinemaBox);
             try
             {
-                ClassCinemaBox.loadCinemaBoxTab(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox, ref metroTabCinemaBox);
-                ClassCinemaBox.changeSlotStateInPreview(ref dataGridViewCinemaBox, ref metroTabCinemaBox);
+                CinemaBox.loadCinemaBoxTab();
+                CinemaBox.changeSlotStateInPreview();
                 ClassUser.loadDataGridViewUser(ref dataGridViewUser);
                 ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
 
@@ -71,39 +75,58 @@ namespace MovieManagement
         }
 
 
-        // on Cinema Box tab events        
+        // on Cinema Box tab events   
+        private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
+        {
+            CinemaBox.loadComboBoxMovie();
+            CinemaBox.loadDataGridViewCinemaBox();
+        }
+
         private void comboBoxMovie_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClassCinemaBox.loadComboBoxTime(ref comboBoxMovie, ref comboBoxTime);
-            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox, ref metroTabCinemaBox);
+            CinemaBox.loadComboBoxTime();
+            CinemaBox.loadDataGridViewCinemaBox();
         }
 
         private void comboBoxTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClassCinemaBox.loadComboBoxCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
-            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox, ref metroTabCinemaBox);
+            CinemaBox.loadComboBoxCinemaBox();
+            CinemaBox.loadDataGridViewCinemaBox();
         }
 
         private void comboBoxCinemaBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox, ref metroTabCinemaBox);
+            CinemaBox.loadDataGridViewCinemaBox();
         }
 
         private void dataGridViewCinemaBox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewCinemaBox.CurrentRow != null)
+            try
             {
-                ClassCinemaBox.editDataGridViewCinemaBoxStatus(ref dataGridViewCinemaBox, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref metroTabCinemaBox);
+                if (dataGridViewCinemaBox.CurrentRow != null)
+                {
+                    CinemaBox.editDataGridViewCinemaBoxStatus();
+                }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("on CellValueChanged event: " + ex.Message);
+            }
+
         }
-        
+
+        private void btnUpdateBox_Click(object sender, EventArgs e)
+        {
+            CinemaBox.editDataGridViewCinemaBoxStatus();
+        }
+
         private void buttonBoxSlot_click(object sender, EventArgs e)
-        {            
+        {
             Button btn = sender as Button;
             if (btn.BackColor == Color.Red)
             {
                 btn.BackColor = SystemColors.Control;
-            } 
+            }
             else
             {
                 btn.BackColor = Color.Red;
@@ -123,12 +146,13 @@ namespace MovieManagement
 
         private void buttonOKCB_Click(object sender, EventArgs e)
         {
-            /*Debug.WriteLine("=======");
+            Debug.WriteLine("=======");
             foreach (string slotName in SlotnameList)
             {
                 Debug.WriteLine(slotName);
-                ClassCinemaBox.updateStatusByPreview(ref dataGridViewCinemaBox, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref metroTabCinemaBox, slotName);
-            }  */   
+                CinemaBox.updateStatusByPreview(slotName);
+            }
+            CinemaBox.loadDataGridViewCinemaBox();
         }
 
 
@@ -193,5 +217,7 @@ namespace MovieManagement
             GroupBoxAddUser.Visible = true;
             buttonUpdateUser.Enabled = true;
         }
+
+   
     }
 }

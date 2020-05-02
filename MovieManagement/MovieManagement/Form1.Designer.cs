@@ -51,7 +51,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxDate = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.D5 = new System.Windows.Forms.Button();
@@ -77,10 +76,6 @@
             this.buttonOKCB = new System.Windows.Forms.Button();
             this.btnUpdateBox = new System.Windows.Forms.Button();
             this.dataGridViewCinemaBox = new System.Windows.Forms.DataGridView();
-            this.txtBoxSlotId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSlotName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Slot_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxMovie = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxCinemaBox = new System.Windows.Forms.ComboBox();
@@ -119,6 +114,11 @@
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtBoxSlotId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSlotName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Slot_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -330,11 +330,11 @@
             // 
             // metroTabCinemaBox
             // 
+            this.metroTabCinemaBox.Controls.Add(this.dateTimePickerDate);
             this.metroTabCinemaBox.Controls.Add(this.panel4);
             this.metroTabCinemaBox.Controls.Add(this.panel3);
             this.metroTabCinemaBox.Controls.Add(this.label7);
             this.metroTabCinemaBox.Controls.Add(this.label6);
-            this.metroTabCinemaBox.Controls.Add(this.textBoxDate);
             this.metroTabCinemaBox.Controls.Add(this.panel2);
             this.metroTabCinemaBox.Controls.Add(this.D5);
             this.metroTabCinemaBox.Controls.Add(this.D4);
@@ -415,15 +415,6 @@
             this.label6.Size = new System.Drawing.Size(56, 15);
             this.label6.TabIndex = 9;
             this.label6.Text = "Available";
-            // 
-            // textBoxDate
-            // 
-            this.textBoxDate.BackColor = System.Drawing.Color.White;
-            this.textBoxDate.Enabled = false;
-            this.textBoxDate.Location = new System.Drawing.Point(62, 23);
-            this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.Size = new System.Drawing.Size(127, 21);
-            this.textBoxDate.TabIndex = 7;
             // 
             // panel2
             // 
@@ -685,6 +676,7 @@
             this.btnUpdateBox.TabIndex = 5;
             this.btnUpdateBox.Text = "Update";
             this.btnUpdateBox.UseVisualStyleBackColor = false;
+            this.btnUpdateBox.Click += new System.EventHandler(this.btnUpdateBox_Click);
             // 
             // dataGridViewCinemaBox
             // 
@@ -700,44 +692,6 @@
             this.dataGridViewCinemaBox.Size = new System.Drawing.Size(504, 221);
             this.dataGridViewCinemaBox.TabIndex = 4;
             this.dataGridViewCinemaBox.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCinemaBox_CellValueChanged);
-            // 
-            // txtBoxSlotId
-            // 
-            this.txtBoxSlotId.DataPropertyName = "boxstatus_id";
-            this.txtBoxSlotId.HeaderText = "BoxSlot_id";
-            this.txtBoxSlotId.MinimumWidth = 6;
-            this.txtBoxSlotId.Name = "txtBoxSlotId";
-            this.txtBoxSlotId.ReadOnly = true;
-            this.txtBoxSlotId.Visible = false;
-            this.txtBoxSlotId.Width = 125;
-            // 
-            // txtSlotName
-            // 
-            this.txtSlotName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.txtSlotName.DataPropertyName = "Slot_name";
-            this.txtSlotName.HeaderText = "Slot_name";
-            this.txtSlotName.MinimumWidth = 6;
-            this.txtSlotName.Name = "txtSlotName";
-            this.txtSlotName.ReadOnly = true;
-            // 
-            // chkStatus
-            // 
-            this.chkStatus.DataPropertyName = "Status";
-            this.chkStatus.HeaderText = "Available";
-            this.chkStatus.MinimumWidth = 6;
-            this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.chkStatus.Width = 125;
-            // 
-            // Slot_id
-            // 
-            this.Slot_id.DataPropertyName = "Slot_id";
-            this.Slot_id.HeaderText = "Slot_id";
-            this.Slot_id.MinimumWidth = 6;
-            this.Slot_id.Name = "Slot_id";
-            this.Slot_id.Visible = false;
-            this.Slot_id.Width = 125;
             // 
             // comboBoxMovie
             // 
@@ -1153,6 +1107,52 @@
             this.dataGridView1.Size = new System.Drawing.Size(553, 230);
             this.dataGridView1.TabIndex = 2;
             // 
+            // txtBoxSlotId
+            // 
+            this.txtBoxSlotId.DataPropertyName = "boxstatus_id";
+            this.txtBoxSlotId.HeaderText = "BoxSlot_id";
+            this.txtBoxSlotId.MinimumWidth = 6;
+            this.txtBoxSlotId.Name = "txtBoxSlotId";
+            this.txtBoxSlotId.ReadOnly = true;
+            this.txtBoxSlotId.Visible = false;
+            this.txtBoxSlotId.Width = 125;
+            // 
+            // txtSlotName
+            // 
+            this.txtSlotName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.txtSlotName.DataPropertyName = "Slot_name";
+            this.txtSlotName.HeaderText = "Slot_name";
+            this.txtSlotName.MinimumWidth = 6;
+            this.txtSlotName.Name = "txtSlotName";
+            this.txtSlotName.ReadOnly = true;
+            // 
+            // chkStatus
+            // 
+            this.chkStatus.DataPropertyName = "Status";
+            this.chkStatus.HeaderText = "Available";
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Slot_id
+            // 
+            this.Slot_id.DataPropertyName = "Slot_id";
+            this.Slot_id.HeaderText = "Slot_id";
+            this.Slot_id.MinimumWidth = 6;
+            this.Slot_id.Name = "Slot_id";
+            this.Slot_id.Visible = false;
+            this.Slot_id.Width = 125;
+            // 
+            // dateTimePickerDate
+            // 
+            this.dateTimePickerDate.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerDate.Location = new System.Drawing.Point(62, 22);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(127, 21);
+            this.dateTimePickerDate.TabIndex = 11;
+            this.dateTimePickerDate.ValueChanged += new System.EventHandler(this.dateTimePickerDate_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1239,7 +1239,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxCinemaBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxDate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -1256,11 +1255,6 @@
         private System.Windows.Forms.Button buttonAddSchedule;
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_name;
         private System.Windows.Forms.TextBox txtMoviedesc;
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn txtBoxSlotId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txtSlotName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Slot_id;
 
 
         private System.Windows.Forms.Button buttonAddUser;
@@ -1283,6 +1277,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn movie_desc;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtBoxSlotId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtSlotName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Slot_id;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
     }
 }
 
