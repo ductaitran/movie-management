@@ -26,9 +26,15 @@ namespace MovieManagement
 
                 if (exist == 1)
                 {
-                    this.Hide();
+                    this.Visible = false;
                     Form1 mainForm = new Form1();
-                    mainForm.Show();
+                    mainForm.ShowDialog();
+                    if (mainForm.IsDisposed)
+                    {
+                        textBoxUserName.Text = "";
+                        textBoxUserPassword.Text = "";
+                        this.Visible = true;
+                    }
                 }
             }
             catch (Exception ex)

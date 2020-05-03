@@ -187,6 +187,8 @@ namespace MovieManagement
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
+            TextBoxAddUserID.ReadOnly = false;
+            TextBoxAddUserID.Enabled = true;
             ClassUser.loadAddUserForm(ref dataGridViewUser, ref ComboBoxAddUserType);
             ButtonFormAddUser.Visible = true;
             ComboBoxAddUserType.SelectedIndex = -1;
@@ -313,13 +315,17 @@ namespace MovieManagement
         {
             // handle display
             string user = ClassUser.getUserName();
-            labelCurrentUser.Text = user;
+            labelCurrentUser.Text = ClassUser.userType + ": " + user;
         }
 
         // logout, return to Signin Form
         private void labelLogout_Click(object sender, EventArgs e)
         {
             // handle logout
+            this.Close();
+            this.Dispose();
+            
+            
             
         }
 

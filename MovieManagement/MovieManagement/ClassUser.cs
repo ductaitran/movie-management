@@ -13,6 +13,7 @@ namespace MovieManagement
     {
         static DataSet Users = new DataSet();
         static string user_id;
+        static string user_type;
 
         public static string userID
         {
@@ -20,9 +21,13 @@ namespace MovieManagement
             {
                 return user_id;
             }
-            set
+        }
+
+        public static string userType
+        {
+            get
             {
-                user_id = value;
+                return user_type;
             }
         }
 
@@ -178,6 +183,7 @@ namespace MovieManagement
                 int selectedrowindex = dataGridViewUser.SelectedCells[0].RowIndex;
                 string id = dataGridViewUser.Rows[selectedrowindex].Cells[0].Value.ToString();
                 TextBoxAddUserID.ReadOnly = true;
+                TextBoxAddUserID.Enabled = false;
                 TextBoxAddUserID.Text = id;
                 TextBoxAddUserName.Text = dataGridViewUser.Rows[selectedrowindex].Cells[1].Value.ToString();
 
@@ -285,11 +291,10 @@ namespace MovieManagement
                 p2.Value = textBoxUserPassword.Text.Trim();
                 com.Parameters.Add(p1);
                 com.Parameters.Add(p2);
-                userID = com.ExecuteScalar().ToString();
-                id = userID;
+                user_id = com.ExecuteScalar().ToString();
                 clsConnection.closeConnection();
 
-                if (id == "")
+                if (user_id == "")
                 {
                     return 0;
                 }
@@ -308,7 +313,6 @@ namespace MovieManagement
         {
             try
             {
-                string user_type;
                 string query = @"Select Users_Type.userstype_name From Users INNER JOIN Users_Type ON Users.users_type = Users_Type.userstype_id Where users_id = @users_id";
                 clsConnection.openConnection();
                 SqlCommand com = new SqlCommand(query, clsConnection.con);
