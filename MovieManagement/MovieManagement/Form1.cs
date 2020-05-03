@@ -31,7 +31,7 @@ namespace MovieManagement
                 if (user_type == 0)
                 {
                     metroTabMovie.Controls.Remove(metroTabUser);
-                    metroTabMovie.Controls.Remove(metroTabPage1);
+                    metroTabMovie.Controls.Remove(metroTabPage1); // tab Movie
                     metroTabMovie.Controls.Remove(metroTabSchedule);
                 }
                 else
@@ -190,6 +190,7 @@ namespace MovieManagement
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
             ClassUser.loadAddUserForm(ref dataGridViewUser, ref ComboBoxAddUserType);
+            ButtonFormAddUser.Visible = true;
             GroupBoxAddUser.Visible = true;
 
         }
