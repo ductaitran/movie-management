@@ -271,21 +271,53 @@ namespace MovieManagement
 
         public static int checkUserType()
         {
-            string user_type;
-            string query = @"Select Users_Type.userstype_name From Users INNER JOIN Users_Type ON Users.users_type = Users_Type.userstype_id Where users_id = @users_id";
-            clsConnection.openConnection();
-            SqlCommand com = new SqlCommand(query, clsConnection.con);
-            SqlParameter p1 = new SqlParameter("@users_id", SqlDbType.NVarChar);
-            p1.Value = userID.Trim();
-            com.Parameters.Add(p1);
-            user_type = com.ExecuteScalar().ToString();
-            clsConnection.closeConnection();
-
-            if (user_type == "Admin")
+            try
             {
-                return 1;
+                string user_type;
+                string query = @"Select Users_Type.userstype_name From Users INNER JOIN Users_Type ON Users.users_type = Users_Type.userstype_id Where users_id = @users_id";
+                clsConnection.openConnection();
+                SqlCommand com = new SqlCommand(query, clsConnection.con);
+                SqlParameter p1 = new SqlParameter("@users_id", SqlDbType.NVarChar);
+                p1.Value = userID.Trim();
+                com.Parameters.Add(p1);
+                user_type = com.ExecuteScalar().ToString();
+                clsConnection.closeConnection();
+
+                if (user_type == "Admin")
+                {
+                    return 1;
+                }
+                return 0;
             }
-            return 0;
+            catch (Exception ex)
+            {
+                int result = 0;
+                MessageBox.Show(ex.Message);
+                return result;
+            }
+        }
+
+        public static string getUserName()
+        {
+            try
+            {
+                string user_name;
+                string query = @"SELECT users_name FROM Users WHERE users_id = @users_id";
+                clsConnection.openConnection();
+                SqlCommand com = new SqlCommand(query, clsConnection.con);
+                SqlParameter p1 = new SqlParameter("@users_id", SqlDbType.NVarChar);
+                p1.Value = userID.Trim();
+                com.Parameters.Add(p1);
+                user_name = com.ExecuteScalar().ToString();
+                clsConnection.closeConnection();
+                return user_name;
+            }
+            catch (Exception ex)
+            {
+                string user_name = "";
+                MessageBox.Show(ex.Message);
+                return user_name;
+            }
         }
     }
 }

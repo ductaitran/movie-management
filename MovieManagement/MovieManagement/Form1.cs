@@ -307,6 +307,8 @@ namespace MovieManagement
         private void disPlayCurrentUser()
         {
             // handle display
+            string user = ClassUser.getUserName();
+            labelCurrentUser.Text = user;
         }
 
         // logout, return to Signin Form
