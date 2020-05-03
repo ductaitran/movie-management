@@ -23,7 +23,7 @@ namespace MovieManagement
             InitializeComponent();
             // create an new object of ClassCinemaBox, bind references
             CinemaBox = new ClassCinemaBox(dateTimePickerDate, comboBoxMovie, comboBoxTime, comboBoxCinemaBox, 
-                dataGridViewCinemaBox, metroTabCinemaBox);
+                dataGridViewCinemaBox, groupBoxPreview, btnUpdateBox);
             Schedule = new ClassSchedule(dataGridViewSchedule,buttonSaveSchedule, buttonUpdateSchedule, buttonRemoveSchedule,monthCalendar1);
             try
             {
@@ -32,18 +32,14 @@ namespace MovieManagement
                 ClassUser.loadDataGridViewUser(ref dataGridViewUser);
                 ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
 				Schedule.LoadScheduleTab();
+                disPlayCurrentUser();
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        }   
 
         // on Movie tab events
         private void btnRemoveMovie_Click(object sender, EventArgs e)
@@ -81,8 +77,7 @@ namespace MovieManagement
         // on Cinema Box tab events   
         private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
         {
-            CinemaBox.loadComboBoxMovie();
-            CinemaBox.loadDataGridViewCinemaBox();
+            CinemaBox.loadCinemaBoxTab();
         }
 
         private void comboBoxMovie_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,18 +121,18 @@ namespace MovieManagement
         private void buttonBoxSlot_click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            if (btn.BackColor == Color.Red)
+            if (btn.BackColor == Color.FromArgb(214, 48, 49))
             {
                 btn.BackColor = SystemColors.Control;
             }
             else
             {
-                btn.BackColor = Color.Red;
+                btn.BackColor = Color.FromArgb(214, 48, 49);
             }
 
             // if slot is chosed, add slot name to List
             // if slot is unchosed, remove slot name from List
-            if (btn.BackColor == Color.Red)
+            if (btn.BackColor == Color.FromArgb(214, 48, 49))
             {
                 SlotnameList.Add(btn.Name);
             }
@@ -155,6 +150,8 @@ namespace MovieManagement
                 Debug.WriteLine(slotName);
                 CinemaBox.updateStatusByPreview(slotName);
             }
+            // clear List
+            SlotnameList = new List<string>();
             CinemaBox.loadDataGridViewCinemaBox();
         }
 
@@ -220,6 +217,8 @@ namespace MovieManagement
             GroupBoxAddUser.Visible = true;
             buttonUpdateUser.Enabled = true;
         }
+
+        // on Schedule tab events
         private void buttonUpdateSchedule_Click(object sender, EventArgs e)
         {
             if (Schedule.UpdateData(monthCalendar1.SelectionRange.Start))
@@ -287,6 +286,52 @@ namespace MovieManagement
                 buttonSaveSchedule.BackColor = Color.Transparent;
                 buttonSaveSchedule.ForeColor = Color.CornflowerBlue;
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        // display current user at footer
+        private void disPlayCurrentUser()
+        {
+            // handle display
+        }
+
+        // logout, return to Signin Form
+        private void labelLogout_Click(object sender, EventArgs e)
+        {
+            // handle logout
+        }
+
+        //make form movable
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void Form1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        // styling
+        private void btnExit_MouseEnter(object sender, EventArgs e)
+        {
+            btnExit.BackColor = Color.FromArgb(234, 32, 39);
+        }
+
+        private void btnExit_MouseLeave(object sender, EventArgs e)
+        {
+            btnExit.BackColor = this.BackColor;
         }
     }
 }

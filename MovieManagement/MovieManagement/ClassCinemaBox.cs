@@ -18,25 +18,54 @@ namespace MovieManagement
         private ComboBox comboBoxTime;
         private ComboBox comboBoxCinemaBox;
         private DataGridView dataGridViewCinemaBox;
-        private MetroFramework.Controls.MetroTabPage metroTabCinemaBox;
+        private GroupBox groupBoxPreview;
+        private Button btnUpdateBox;
 
         public ClassCinemaBox(DateTimePicker dateTimePickerDate, ComboBox comboBoxMovie, ComboBox comboBoxTime, ComboBox comboBoxCinemaBox,
-            DataGridView dataGridViewCinemaBox, MetroFramework.Controls.MetroTabPage metroTabCinemaBox)
+            DataGridView dataGridViewCinemaBox, GroupBox groupBoxPreview, Button btnUpdateBox)
         {
             this.dateTimePickerDate = dateTimePickerDate;
             this.comboBoxMovie = comboBoxMovie;
             this.comboBoxTime = comboBoxTime;
             this.comboBoxCinemaBox = comboBoxCinemaBox;
             this.dataGridViewCinemaBox = dataGridViewCinemaBox;
-            this.metroTabCinemaBox = metroTabCinemaBox;
+            this.groupBoxPreview = groupBoxPreview;
+            this.btnUpdateBox = btnUpdateBox;
         }
 
         public void loadCinemaBoxTab()
         {
-            /*loadOnSelectData();*/
+            clearData();
             loadComboBoxMovie();
             loadDataGridViewCinemaBox();
-        }        
+            if (dataGridViewCinemaBox.DataSource != null)
+            {
+                groupBoxPreview.Visible = true;
+                dataGridViewCinemaBox.Visible = true;
+                btnUpdateBox.Visible = true;
+            }
+        }
+       
+        public void clearData()
+        {
+            // clear DataGridViewCinemaBox
+            dataGridViewCinemaBox.DataSource = null;
+            dataGridViewCinemaBox.Rows.Clear();
+
+            // hide DataGridViewCinemaBox
+            dataGridViewCinemaBox.Visible = false;
+
+            // hide btnUpdateBox
+            btnUpdateBox.Visible = false;
+
+            // clear ComboBox
+            comboBoxMovie.DataSource = null;
+            comboBoxTime.DataSource = null;
+            comboBoxCinemaBox.DataSource = null;
+
+            // hide Preview
+            groupBoxPreview.Visible = false;
+        }
 
         public void loadComboBoxMovie()
         {
@@ -195,19 +224,6 @@ namespace MovieManagement
             }
         }
 
-        // load data to combo box in the Cinema Box tab
-     /*   public void loadOnSelectData()
-        {
-
-            try
-            {
-                loadComboBoxMovie();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }*/
 
         public void editDataGridViewCinemaBoxStatus()
         {
@@ -253,7 +269,7 @@ namespace MovieManagement
                 {
                     string slotName = dataGrow.Cells["txtSlotName"].Value.ToString();
                     bool slotState = Convert.ToBoolean(dataGrow.Cells["chkStatus"].Value);
-                    foreach (Control control in metroTabCinemaBox.Controls)
+                    foreach (Control control in groupBoxPreview.Controls)
                     {
                         Button slotButton = control as Button;
                         if (slotButton != null && slotButton.Name == slotName)
@@ -265,7 +281,7 @@ namespace MovieManagement
                             }
                             else
                             {
-                                slotButton.BackColor = SystemColors.Control;
+                                slotButton.BackColor = Color.White;
                                 slotButton.Enabled = true;
                             }
                         }
