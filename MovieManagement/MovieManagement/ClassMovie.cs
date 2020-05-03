@@ -22,7 +22,8 @@ namespace MovieManagement
             {
                 if (newPicturePath != null)
                 {
-                    picDestinationPath = Path.Combine(@"../../../source/img/", Path.GetFileName(newPicturePath));
+                    /*picDestinationPath = Path.Combine(@"../../../source/img/", Path.GetFileName(newPicturePath));*/
+                    picDestinationPath = Path.GetFileName(newPicturePath);
                     File.Copy(newPicturePath, picDestinationPath, true);
                     string strUpdate = "UPDATE Movie set movie_cover ='" + picDestinationPath + "' where movie_id = '" + Convert.ToString(dataGridViewMovie.Rows[selectedrowindex].Cells[0].Value) + "'";
                     clsConnection.openConnection();
