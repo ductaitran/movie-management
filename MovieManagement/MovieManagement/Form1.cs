@@ -17,19 +17,21 @@ namespace MovieManagement
     {
         private List<string> SlotnameList = new List<string>();
         private ClassCinemaBox CinemaBox;
+        private ClassSchedule Schedule;
         public Form1()
         {
             InitializeComponent();
             // create an new object of ClassCinemaBox, bind references
             CinemaBox = new ClassCinemaBox(dateTimePickerDate, comboBoxMovie, comboBoxTime, comboBoxCinemaBox, 
                 dataGridViewCinemaBox, metroTabCinemaBox);
+            Schedule = new ClassSchedule(dataGridViewSchedule,buttonSaveSchedule, buttonUpdateSchedule, buttonRemoveSchedule,monthCalendar1);
             try
             {
                 CinemaBox.loadCinemaBoxTab();
                 CinemaBox.changeSlotStateInPreview();
                 ClassUser.loadDataGridViewUser(ref dataGridViewUser);
                 ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
-				LoadScheduleTab();
+				Schedule.LoadScheduleTab();
 
             }
             catch (Exception ex)
@@ -218,31 +220,19 @@ namespace MovieManagement
             GroupBoxAddUser.Visible = true;
             buttonUpdateUser.Enabled = true;
         }
-        private void LoadScheduleTab()
-        {
-            ClassSchedule.InitilizeDataGridView(ref dataGridViewSchedule, monthCalendar1.SelectionRange.Start);
-            dataGridViewSchedule.CellValueChanged += new DataGridViewCellEventHandler(dataGridViewSchedule_CellValueChanged);
-            buttonSaveSchedule.Enabled = false;
-        }
-
-        private void dataGridViewSchedule_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            buttonSaveSchedule.Enabled = true;
-        }
-
         private void buttonUpdateSchedule_Click(object sender, EventArgs e)
         {
-            if (ClassSchedule.UpdateData(ref dataGridViewSchedule, monthCalendar1.SelectionRange.Start))
+            if (Schedule.UpdateData(monthCalendar1.SelectionRange.Start))
             {
-                Debug.WriteLine("Updated");
+                Debug.WriteLine("Refreshing schedule");
                 buttonSaveSchedule.Enabled = false;
             }
-            else Debug.WriteLine("Update Fail");
+            else Debug.WriteLine("Refresh failed");
         }
 
         private void buttonRemoveSchedule_Click(object sender, EventArgs e)
         {
-            if (ClassSchedule.RemoveData(ref dataGridViewSchedule))
+            if (Schedule.RemoveData())
             {
                 Debug.WriteLine("Removed");
                 buttonSaveSchedule.Enabled = false;
@@ -258,60 +248,13 @@ namespace MovieManagement
         private void buttonSaveSchedule_Click(object sender, EventArgs e)
         {
             buttonSaveSchedule.Enabled = false;
-            int result;
-            foreach (DataGridViewRow DataGridViewRow in dataGridViewSchedule.Rows)
-            {
-                try
-                {
-                    if (Convert.ToString(DataGridViewRow.Cells[1].Value) != "")// du lieu rong la hang cuoi cung datagridview tu tao
-                    {
-                        Debug.WriteLine("cinema box after update: " + Convert.ToString(DataGridViewRow.Cells[1].Value));
-                        Debug.WriteLine("0: " + Convert.ToString(DataGridViewRow.Cells[0].Value) + " 1: " + Convert.ToString(DataGridViewRow.Cells[1].Value) + " 2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + " 3: " + Convert.ToString(DataGridViewRow.Cells[3].Value) + " 4: " + Convert.ToString(DataGridViewRow.Cells[4].Value) + " 5: " + Convert.ToString(DataGridViewRow.Cells[5].Value));
-                        Debug.WriteLine("inserting...");
-                        string query = @"UPDATE Schedule SET 
-                                cinemabox_id = @cinemabox_id,
-                                movie_id = @movie_id,
-                                schedule_date = @schedule_date,
-                                schedule_time = @schedule_time
-                                WHERE schedule_id = @schedule_id";
-                        clsConnection.openConnection();
-                        SqlCommand command = new SqlCommand(query, clsConnection.con);
-                        Debug.WriteLine("0: " + Convert.ToString(DataGridViewRow.Cells[0].Value) + " 1: " + Convert.ToString(DataGridViewRow.Cells[1].Value) + " 2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + " 5: " + Convert.ToString(DataGridViewRow.Cells[5].Value) + " 6: " + Convert.ToString(DataGridViewRow.Cells[6].Value));
-                        command.Parameters.AddWithValue("@cinemabox_id", Convert.ToString(DataGridViewRow.Cells[1].Value));
-                        command.Parameters.AddWithValue("@movie_id", Convert.ToString(DataGridViewRow.Cells[2].Value));
-                        command.Parameters.AddWithValue("@schedule_date", Convert.ToDateTime(DataGridViewRow.Cells[5].Value));
-                        command.Parameters.AddWithValue("@schedule_time", Convert.ToString(DataGridViewRow.Cells[6].Value));
-                        command.Parameters.AddWithValue("@schedule_id", Convert.ToString(DataGridViewRow.Cells[0].Value));
-                        result = command.ExecuteNonQuery();
-                        Debug.WriteLine("Result: " + result);
-                        if (result == 0)
-                        {
-                            if (!ClassSchedule.InsertData(Convert.ToString(DataGridViewRow.Cells[1].Value),
-                                Convert.ToString(DataGridViewRow.Cells[2].Value),
-                                Convert.ToDateTime(DataGridViewRow.Cells[5].Value),
-                                Convert.ToString(DataGridViewRow.Cells[6].Value),
-                                Convert.ToString(DataGridViewRow.Cells[0].Value)
-                                ))
-                            {
-                                MessageBox.Show("Insert fail, please check again!");
-                            }
-                        }
-                    }
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show("Input is invalid: " + err.Message);
-                    clsConnection.closeConnection();
-                }
-            }
-            buttonUpdateSchedule.PerformClick();
-            clsConnection.closeConnection();
+            Schedule.SaveData();
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             dateTimePickerSchedule.Value = monthCalendar1.SelectionRange.Start;
-            LoadScheduleTab();
+            Schedule.LoadScheduleTab();
         }
 
         private void dataGridViewSchedule_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

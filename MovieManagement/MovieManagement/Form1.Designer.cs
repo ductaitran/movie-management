@@ -109,13 +109,13 @@
             this.UsersName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxUsersType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabSchedule = new MetroFramework.Controls.MetroTabPage();
+            this.buttonSaveSchedule = new System.Windows.Forms.Button();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePickerSchedule = new System.Windows.Forms.DateTimePicker();
             this.buttonRemoveSchedule = new System.Windows.Forms.Button();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.buttonSaveSchedule = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.metroTabMovie.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -1050,6 +1050,30 @@
             this.metroTabSchedule.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabSchedule.VerticalScrollbarSize = 10;
             // 
+            // buttonSaveSchedule
+            // 
+            this.buttonSaveSchedule.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSaveSchedule.Enabled = false;
+            this.buttonSaveSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveSchedule.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonSaveSchedule.Location = new System.Drawing.Point(63, 282);
+            this.buttonSaveSchedule.Name = "buttonSaveSchedule";
+            this.buttonSaveSchedule.Size = new System.Drawing.Size(86, 33);
+            this.buttonSaveSchedule.TabIndex = 11;
+            this.buttonSaveSchedule.Text = "Save";
+            this.buttonSaveSchedule.UseVisualStyleBackColor = false;
+            this.buttonSaveSchedule.EnabledChanged += new System.EventHandler(this.buttonSaveSchedule_EnabledChanged);
+            this.buttonSaveSchedule.Click += new System.EventHandler(this.buttonSaveSchedule_Click);
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(733, 99);
+            this.monthCalendar1.MaxSelectionCount = 1;
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.ShowTodayCircle = false;
+            this.monthCalendar1.TabIndex = 10;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -1088,7 +1112,7 @@
             // 
             this.buttonUpdateSchedule.BackColor = System.Drawing.Color.LightGreen;
             this.buttonUpdateSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUpdateSchedule.ForeColor = System.Drawing.Color.SeaGreen;
+            this.buttonUpdateSchedule.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.buttonUpdateSchedule.Location = new System.Drawing.Point(423, 282);
             this.buttonUpdateSchedule.Name = "buttonUpdateSchedule";
             this.buttonUpdateSchedule.Size = new System.Drawing.Size(86, 33);
@@ -1105,32 +1129,7 @@
             this.dataGridViewSchedule.RowHeadersWidth = 51;
             this.dataGridViewSchedule.Size = new System.Drawing.Size(553, 230);
             this.dataGridViewSchedule.TabIndex = 2;
-            this.dataGridViewSchedule.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSchedule_CellValueChanged);
             this.dataGridViewSchedule.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewSchedule_EditingControlShowing);
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(733, 99);
-            this.monthCalendar1.MaxSelectionCount = 1;
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.ShowTodayCircle = false;
-            this.monthCalendar1.TabIndex = 10;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
-            // 
-            // buttonSaveSchedule
-            // 
-            this.buttonSaveSchedule.BackColor = System.Drawing.Color.Transparent;
-            this.buttonSaveSchedule.Enabled = false;
-            this.buttonSaveSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSaveSchedule.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.buttonSaveSchedule.Location = new System.Drawing.Point(63, 282);
-            this.buttonSaveSchedule.Name = "buttonSaveSchedule";
-            this.buttonSaveSchedule.Size = new System.Drawing.Size(86, 33);
-            this.buttonSaveSchedule.TabIndex = 11;
-            this.buttonSaveSchedule.Text = "Save";
-            this.buttonSaveSchedule.UseVisualStyleBackColor = false;
-            this.buttonSaveSchedule.EnabledChanged += new System.EventHandler(this.buttonSaveSchedule_EnabledChanged);
-            this.buttonSaveSchedule.Click += new System.EventHandler(this.buttonSaveSchedule_Click);
             // 
             // Form1
             // 
