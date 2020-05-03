@@ -11,13 +11,39 @@ using System.Windows.Forms;
 
 namespace MovieManagement
 {
-    static class ClassSchedule
+    public class ClassSchedule
     {
         //static MetroFramework.Controls.MetroTabPage ScheduleTab;
-        
+        private DataGridView DataGridViewSchedule;
+        private Button ButtonSaveSchedule;
+        private Button ButtonUpdateSchedule;
+        private Button ButtonRemoveSchedule;
+        private MonthCalendar MonthCalendarSchedule;
+
         static DataTable ScheduleSource;
         static DataTable dtCinemaBox;
         static DataTable dtMovie;
+        public ClassSchedule( DataGridView DataGridViewSchedule,
+            Button ButtonSaveSchedule,Button ButtonUpdateSchedule,
+            Button ButtonRemoveSchedule,MonthCalendar MonthCalendarSchedule)
+        {
+            this.DataGridViewSchedule = DataGridViewSchedule;
+            this.ButtonSaveSchedule = ButtonSaveSchedule;
+            this.ButtonUpdateSchedule = ButtonUpdateSchedule;
+            this.ButtonRemoveSchedule = ButtonRemoveSchedule;
+            this.MonthCalendarSchedule = MonthCalendarSchedule;
+        }
+        public void LoadScheduleTab()
+        {
+            InitilizeDataGridView(MonthCalendarSchedule.SelectionRange.Start);
+            DataGridViewSchedule.CellValueChanged += new DataGridViewCellEventHandler(DataGridViewSchedule_CellValueChanged);
+            ButtonSaveSchedule.Enabled = false;
+        }
+        private void DataGridViewSchedule_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            Debug.WriteLine("khoi dong tu class");
+            ButtonSaveSchedule.Enabled = true;
+        }
         public static DataTable GetSchedule(DateTime ShowDate)
         {
             DataTable dt = new DataTable();
@@ -47,7 +73,7 @@ namespace MovieManagement
             }
             return dt;
         }
-        public static void InitilizeDataGridView(ref DataGridView DataGridViewSchedule, DateTime ShowDate)
+        public void InitilizeDataGridView(DateTime ShowDate)
         {
             //lam sach du lieu cu
             DataGridViewSchedule.DataSource = null;
@@ -102,19 +128,19 @@ namespace MovieManagement
         }
         
         //button update
-        public static bool SaveData(ref DataGridView DataGridViewSchedule)
-        {
-            ScheduleSource.AcceptChanges();
+        //public bool SaveData()
+        //{
+          //  ScheduleSource.AcceptChanges();
             
-            foreach (DataGridViewRow DataGridViewRow in DataGridViewSchedule.Rows)
-            {
+          //  foreach (DataGridViewRow DataGridViewRow in DataGridViewSchedule.Rows)
+         //   {
                 
                 //DataGridViewRow.Cells[1].Value = Convert.ToString(DataGridViewRow.Cells[2].Value);
-                Debug.WriteLine("0: "+Convert.ToString(DataGridViewRow.Cells[0].Value)+"1: "+ Convert.ToString(DataGridViewRow.Cells[1].Value) + "2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + "3: " + Convert.ToString(DataGridViewRow.Cells[3].Value) + "4: " + Convert.ToString(DataGridViewRow.Cells[4].Value) + "5: " + Convert.ToString(DataGridViewRow.Cells[5].Value));
-            }
-            return true;
-        }
-        public static bool RemoveData(ref DataGridView DataGridViewSchedule)
+            //    Debug.WriteLine("0: "+Convert.ToString(DataGridViewRow.Cells[0].Value)+"1: "+ Convert.ToString(DataGridViewRow.Cells[1].Value) + "2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + "3: " + Convert.ToString(DataGridViewRow.Cells[3].Value) + "4: " + Convert.ToString(DataGridViewRow.Cells[4].Value) + "5: " + Convert.ToString(DataGridViewRow.Cells[5].Value));
+           // }
+          //  return true;
+     //   }
+        public bool RemoveData()
         {
             clsConnection.openConnection();
             try
@@ -159,10 +185,10 @@ namespace MovieManagement
                 return false;
             }
         }
-        public static bool UpdateData(ref DataGridView DataGridViewSchedule, DateTime ShowDate)
+        public bool UpdateData(DateTime ShowDate)
         {
             DataGridViewSchedule.Controls.Clear();
-            InitilizeDataGridView(ref  DataGridViewSchedule, ShowDate);
+            InitilizeDataGridView(ShowDate);
             return true;
         }
         public static string GetCinemaBoxID(string cinemabox_name)
@@ -226,6 +252,61 @@ namespace MovieManagement
             reader.Close();
             clsConnection.closeConnection();
             return dt;
+        }
+        public bool SaveData()
+        {
+            int result;
+            foreach (DataGridViewRow DataGridViewRow in DataGridViewSchedule.Rows)
+            {
+                try
+                {
+                    if (Convert.ToString(DataGridViewRow.Cells[1].Value) != "")// du lieu rong la hang cuoi cung datagridview tu tao
+                    {
+                        Debug.WriteLine("cinema box after update: " + Convert.ToString(DataGridViewRow.Cells[1].Value));
+                        Debug.WriteLine("0: " + Convert.ToString(DataGridViewRow.Cells[0].Value) + " 1: " + Convert.ToString(DataGridViewRow.Cells[1].Value) + " 2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + " 3: " + Convert.ToString(DataGridViewRow.Cells[3].Value) + " 4: " + Convert.ToString(DataGridViewRow.Cells[4].Value) + " 5: " + Convert.ToString(DataGridViewRow.Cells[5].Value));
+                        Debug.WriteLine("inserting...");
+                        string query = @"UPDATE Schedule SET 
+                                cinemabox_id = @cinemabox_id,
+                                movie_id = @movie_id,
+                                schedule_date = @schedule_date,
+                                schedule_time = @schedule_time
+                                WHERE schedule_id = @schedule_id";
+                        clsConnection.openConnection();
+                        SqlCommand command = new SqlCommand(query, clsConnection.con);
+                        Debug.WriteLine("0: " + Convert.ToString(DataGridViewRow.Cells[0].Value) + " 1: " + Convert.ToString(DataGridViewRow.Cells[1].Value) + " 2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + " 5: " + Convert.ToString(DataGridViewRow.Cells[5].Value) + " 6: " + Convert.ToString(DataGridViewRow.Cells[6].Value));
+                        command.Parameters.AddWithValue("@cinemabox_id", Convert.ToString(DataGridViewRow.Cells[1].Value));
+                        command.Parameters.AddWithValue("@movie_id", Convert.ToString(DataGridViewRow.Cells[2].Value));
+                        command.Parameters.AddWithValue("@schedule_date", Convert.ToDateTime(DataGridViewRow.Cells[5].Value));
+                        command.Parameters.AddWithValue("@schedule_time", Convert.ToString(DataGridViewRow.Cells[6].Value));
+                        command.Parameters.AddWithValue("@schedule_id", Convert.ToString(DataGridViewRow.Cells[0].Value));
+                        result = command.ExecuteNonQuery();
+                        Debug.WriteLine("Result: " + result);
+                        if (result == 0)
+                        {
+                            if (!ClassSchedule.InsertData(Convert.ToString(DataGridViewRow.Cells[1].Value),
+                                Convert.ToString(DataGridViewRow.Cells[2].Value),
+                                Convert.ToDateTime(DataGridViewRow.Cells[5].Value),
+                                Convert.ToString(DataGridViewRow.Cells[6].Value),
+                                Convert.ToString(DataGridViewRow.Cells[0].Value)
+                                ))
+                            {
+                                MessageBox.Show("Insert fail, please check again!");
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show("Input is invalid: " + err.Message);
+                    clsConnection.closeConnection();
+                    return false;
+                }
+            }
+            
+            ButtonUpdateSchedule.PerformClick();
+            clsConnection.closeConnection();
+            return true;
         }
         public static bool InsertData(string cinemabox_id, string movie_id, DateTime schedule_date, string schedule_time, string schedule_id)
         {
