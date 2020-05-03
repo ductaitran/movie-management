@@ -50,6 +50,8 @@ namespace MovieManagement
         {
             // clear DataGridViewCinemaBox
             dataGridViewCinemaBox.DataSource = null;
+            dataGridViewCinemaBox.AutoGenerateColumns = false;
+            dataGridViewCinemaBox.Refresh();
             //dataGridViewCinemaBox.Rows.Clear();
 
             // hide DataGridViewCinemaBox
@@ -180,6 +182,7 @@ namespace MovieManagement
 
         public void loadDataGridViewCinemaBox()
         {
+            dataGridViewCinemaBox.Refresh();
             try
             {
                 clsConnection.openConnection();

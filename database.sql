@@ -159,6 +159,7 @@ where schedule_id = 'SC1' and boxslot_id in ('BS1', 'BS10', 'BS11', 'BS12', 'BS1
 UPDATE Users set users_password = 1111 where users_id = 'USS8';
 
 --Update and insert procedure
+go
 create procedure MovieAddorEdit
 @movie_id nvarchar(5),
 @movie_name nvarchar(100),
@@ -201,3 +202,5 @@ join Box_Slot on Box_Status.boxslot_id = Box_Slot.boxslot_id
 join Movie on Schedule.movie_id = Movie.movie_id
 join Cinema_Box on Schedule.cinemabox_id = Cinema_box.cinemabox_id
 where movie_name = 'Kiem than ti hon' and schedule_time = '5:00 pm' and cinemabox_name = '3rd Box'
+
+drop procedure if exists  MovieAddorEdit

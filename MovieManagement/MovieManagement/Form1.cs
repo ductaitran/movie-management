@@ -124,7 +124,7 @@ namespace MovieManagement
 
         private void btnUpdateBox_Click(object sender, EventArgs e)
         {
-            CinemaBox.editDataGridViewCinemaBoxStatus();
+            CinemaBox.editDataGridViewCinemaBoxStatus();            
         }
 
         private void buttonBoxSlot_click(object sender, EventArgs e)
