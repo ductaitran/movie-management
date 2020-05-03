@@ -168,6 +168,7 @@ namespace MovieManagement
         // on User tab envents
         private void buttonRemoveUser_Click(object sender, EventArgs e)
         {
+            GroupBoxAddUser.Visible = false;
             ClassUser.deleteUser(ref dataGridViewUser);
             ClassUser.loadDataGridViewUser(ref dataGridViewUser);
         }
@@ -188,6 +189,10 @@ namespace MovieManagement
         {
             ClassUser.loadAddUserForm(ref dataGridViewUser, ref ComboBoxAddUserType);
             ButtonFormAddUser.Visible = true;
+            ComboBoxAddUserType.SelectedIndex = -1;
+            TextBoxAddUserID.Text = "";
+            TextBoxAddUserName.Text = "";
+            TextBoxAddUserPassword.Text = "";
             GroupBoxAddUser.Visible = true;
 
         }
@@ -315,6 +320,7 @@ namespace MovieManagement
         private void labelLogout_Click(object sender, EventArgs e)
         {
             // handle logout
+            
         }
 
         //make form movable

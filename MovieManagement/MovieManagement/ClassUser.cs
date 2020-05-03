@@ -119,32 +119,50 @@ namespace MovieManagement
         {
             try
             {
-                DialogResult add = MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (add == DialogResult.Yes)
+                int available;
+                string query = @"SELECT COUNT(users_name) FROM Users WHERE users_name = @users_name";
+                clsConnection.openConnection();
+                SqlCommand com1 = new SqlCommand(query, clsConnection.con);
+                SqlParameter param1 = new SqlParameter("@users_name", SqlDbType.NVarChar);
+                param1.Value = TextBoxAddUserName.Text.Trim();
+                com1.Parameters.Add(param1);
+                available = Convert.ToInt32(com1.ExecuteScalar());
+                clsConnection.closeConnection();
+
+                if (available >= 1)
                 {
-                    string strInsert = "Insert Into Users Values(@users_id, @users_password, @users_name, @users_type)";
-                    clsConnection.openConnection();
+                    MessageBox.Show("Username is not available! Please choose another name.");
+                }
 
-                    SqlCommand com = new SqlCommand(strInsert, clsConnection.con);
+                else
+                {
+                    DialogResult add = MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (add == DialogResult.Yes)
+                    {
+                        string strInsert = @"Insert Into Users Values(@users_id, @users_password, @users_name, @users_type)";
+                        clsConnection.openConnection();
 
-                    SqlParameter p1 = new SqlParameter("@users_id", SqlDbType.NVarChar);
-                    p1.Value = TextBoxAddUserID.Text;
-                    SqlParameter p2 = new SqlParameter("@users_name", SqlDbType.NVarChar);
-                    p2.Value = TextBoxAddUserName.Text;
-                    SqlParameter p3 = new SqlParameter("@users_password", SqlDbType.NVarChar);
-                    p3.Value = TextBoxAddUserPassword.Text;
-                    SqlParameter p4 = new SqlParameter("@users_type", SqlDbType.NVarChar);
-                    p4.Value = ComboBoxAddUserType.SelectedValue;
+                        SqlCommand com = new SqlCommand(strInsert, clsConnection.con);
 
-                    com.Parameters.Add(p1);
-                    com.Parameters.Add(p2);
-                    com.Parameters.Add(p3);
-                    com.Parameters.Add(p4);
-                    com.ExecuteNonQuery();
+                        SqlParameter p1 = new SqlParameter("@users_id", SqlDbType.NVarChar);
+                        p1.Value = TextBoxAddUserID.Text.Trim();
+                        SqlParameter p2 = new SqlParameter("@users_name", SqlDbType.NVarChar);
+                        p2.Value = TextBoxAddUserName.Text.Trim();
+                        SqlParameter p3 = new SqlParameter("@users_password", SqlDbType.NVarChar);
+                        p3.Value = TextBoxAddUserPassword.Text.Trim();
+                        SqlParameter p4 = new SqlParameter("@users_type", SqlDbType.NVarChar);
+                        p4.Value = ComboBoxAddUserType.SelectedValue;
 
-                    MessageBox.Show("User has been added!!");
+                        com.Parameters.Add(p1);
+                        com.Parameters.Add(p2);
+                        com.Parameters.Add(p3);
+                        com.Parameters.Add(p4);
+                        com.ExecuteNonQuery();
 
-                    clsConnection.closeConnection();
+                        MessageBox.Show("User has been added!!");
+
+                        clsConnection.closeConnection();
+                    }
                 }
             }
             catch (Exception ex)
@@ -190,44 +208,61 @@ namespace MovieManagement
         {
             try
             {
-                DialogResult update = MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (update == DialogResult.Yes)
+                int available;
+                string query = @"SELECT COUNT(users_name) FROM Users WHERE users_name = @users_name";
+                clsConnection.openConnection();
+                SqlCommand com1 = new SqlCommand(query, clsConnection.con);
+                SqlParameter param1 = new SqlParameter("@users_name", SqlDbType.NVarChar);
+                param1.Value = TextBoxAddUserName.Text.Trim();
+                com1.Parameters.Add(param1);
+                available = Convert.ToInt32(com1.ExecuteScalar());
+                clsConnection.closeConnection();
+
+                if (available >= 1)
                 {
-                    string id = TextBoxAddUserID.Text;
-                    string newpassword = TextBoxAddUserPassword.Text;
-                    string strInsert;
+                    MessageBox.Show("Username is not available! Please choose another name.");
+                }
 
-                    clsConnection.openConnection();
-
-                    strInsert = @"UPDATE Users SET users_name = @users_name, users_type = @users_type WHERE users_id = @users_id";
-
-                    SqlCommand com = new SqlCommand(strInsert, clsConnection.con);
-
-                    if (newpassword != "")
+                else
+                {
+                    DialogResult update = MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (update == DialogResult.Yes)
                     {
-                        strInsert = @"UPDATE Users SET users_password = @users_password, users_name = @users_name, users_type = @users_type WHERE users_id = @users_id";
-                        com = new SqlCommand(strInsert, clsConnection.con);
-                        SqlParameter p1 = new SqlParameter("@users_password", SqlDbType.NVarChar);
-                        p1.Value = TextBoxAddUserPassword.Text;
-                        com.Parameters.Add(p1);
+                        string id = TextBoxAddUserID.Text;
+                        string newpassword = TextBoxAddUserPassword.Text.Trim();
+                        string strInsert;
+
+                        clsConnection.openConnection();
+
+                        strInsert = @"UPDATE Users SET users_name = @users_name, users_type = @users_type WHERE users_id = @users_id";
+
+                        SqlCommand com = new SqlCommand(strInsert, clsConnection.con);
+
+                        if (newpassword != "")
+                        {
+                            strInsert = @"UPDATE Users SET users_password = @users_password, users_name = @users_name, users_type = @users_type WHERE users_id = @users_id";
+                            com = new SqlCommand(strInsert, clsConnection.con);
+                            SqlParameter p1 = new SqlParameter("@users_password", SqlDbType.NVarChar);
+                            p1.Value = TextBoxAddUserPassword.Text.Trim();
+                            com.Parameters.Add(p1);
+                        }
+
+                        SqlParameter p2 = new SqlParameter("@users_name", SqlDbType.NVarChar);
+                        p2.Value = TextBoxAddUserName.Text.Trim();
+                        SqlParameter p3 = new SqlParameter("@users_type", SqlDbType.NVarChar);
+                        p3.Value = ComboBoxAddUserType.SelectedValue;
+                        SqlParameter p4 = new SqlParameter("@users_id", SqlDbType.NVarChar);
+                        p4.Value = id;
+
+                        com.Parameters.Add(p2);
+                        com.Parameters.Add(p3);
+                        com.Parameters.Add(p4);
+                        com.ExecuteNonQuery();
+
+                        MessageBox.Show("User has been updated!!");
+
+                        clsConnection.closeConnection();
                     }
-
-                    SqlParameter p2 = new SqlParameter("@users_name", SqlDbType.NVarChar);
-                    p2.Value = TextBoxAddUserName.Text;
-                    SqlParameter p3 = new SqlParameter("@users_type", SqlDbType.NVarChar);
-                    p3.Value = ComboBoxAddUserType.SelectedValue;
-                    SqlParameter p4 = new SqlParameter("@users_id", SqlDbType.NVarChar);
-                    p4.Value = id;
-
-                    
-                    com.Parameters.Add(p2);
-                    com.Parameters.Add(p3);
-                    com.Parameters.Add(p4);
-                    com.ExecuteNonQuery();
-
-                    MessageBox.Show("User has been updated!!");
-
-                    clsConnection.closeConnection();
                 }
             }
             catch (Exception ex)
