@@ -169,6 +169,7 @@ namespace MovieManagement
         private void buttonRemoveUser_Click(object sender, EventArgs e)
         {
             GroupBoxAddUser.Visible = false;
+            buttonUpdateUser.Enabled = false;
             ClassUser.deleteUser(ref dataGridViewUser);
             ClassUser.loadDataGridViewUser(ref dataGridViewUser);
         }
@@ -195,6 +196,7 @@ namespace MovieManagement
             TextBoxAddUserID.Text = "";
             TextBoxAddUserName.Text = "";
             TextBoxAddUserPassword.Text = "";
+            buttonUpdateUser.Enabled = false;
             GroupBoxAddUser.Visible = true;
 
         }
@@ -225,6 +227,7 @@ namespace MovieManagement
         {
             ClassUser.deleteUser(ref dataGridViewUser);
             ClassUser.loadDataGridViewUser(ref dataGridViewUser);
+            buttonUpdateUser.Enabled = false;
         }
 
         private void buttonEditUser_Click(object sender, EventArgs e)
