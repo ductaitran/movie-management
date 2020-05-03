@@ -13,8 +13,8 @@ namespace MovieManagement
         public static bool openConnection()
         {
             try
-            {                
-                con = new SqlConnection("Server=DESKTOP-NTFJ11I\\DUCTAITRANSQL; Database=MovieManagement; User Id=sa; Password=880883");
+            {
+                con = new SqlConnection("Data Source=HOANGMINH;Initial Catalog=MovieManagement;Integrated Security=True");
                 con.Open();
             }
             catch (Exception)

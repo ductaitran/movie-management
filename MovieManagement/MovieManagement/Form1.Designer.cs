@@ -168,7 +168,7 @@
             this.metroTabMovie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabMovie.Location = new System.Drawing.Point(0, 47);
             this.metroTabMovie.Name = "metroTabMovie";
-            this.metroTabMovie.SelectedIndex = 2;
+            this.metroTabMovie.SelectedIndex = 1;
             this.metroTabMovie.Size = new System.Drawing.Size(1040, 465);
             this.metroTabMovie.TabIndex = 1;
             this.metroTabMovie.UseSelectable = true;
@@ -201,7 +201,7 @@
             // 
             this.txtMoviedesc.Enabled = false;
             this.txtMoviedesc.Location = new System.Drawing.Point(867, 54);
-            this.txtMoviedesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMoviedesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtMoviedesc.Multiline = true;
             this.txtMoviedesc.Name = "txtMoviedesc";
             this.txtMoviedesc.Size = new System.Drawing.Size(158, 184);
@@ -962,7 +962,7 @@
             // 
             this.buttonEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEditUser.Location = new System.Drawing.Point(11, 253);
-            this.buttonEditUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEditUser.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEditUser.Name = "buttonEditUser";
             this.buttonEditUser.Size = new System.Drawing.Size(81, 33);
             this.buttonEditUser.TabIndex = 6;

@@ -12,8 +12,21 @@ namespace MovieManagement
     class ClassUser
     {
         static DataSet Users = new DataSet();
+        static string user_id;
 
-        public static void loadDataGridViewUser(ref DataGridView dataGridViewUser /*, ref DataGridViewComboBoxColumn ComboBoxAddUserType*/)
+        public static string userID
+        {
+            get
+            {
+                return user_id;
+            }
+            set
+            {
+                user_id = value;
+            }
+        }
+
+        public static void loadDataGridViewUser(ref DataGridView dataGridViewUser)
         {
             try
             {
@@ -42,27 +55,6 @@ namespace MovieManagement
                 dataReader.Close();
 
                 dataGridViewUser.DataSource = usersTable;
-
-                clsConnection.closeConnection();
-
-                /* clsConnection.openConnection();
-                string query1 = @"SELECT * FROM Users_Type";
-                SqlCommand cmd1 = new SqlCommand(query1, clsConnection.con);
-                cmd1.ExecuteNonQuery();
-
-                DataTable usersTypeTable = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cmd1);
-                da.Fill(usersTypeTable);
-
-                ComboBoxAddUserType.DataSource = usersTypeTable;
-                ComboBoxAddUserType.ValueMember = "userstype_id";
-                ComboBoxAddUserType.DisplayMember = "userstype_name";    
-
-                /*foreach (DataGridViewRow item in dataGridViewUser.Rows)
-                {
-                    var cell = item.Cells[2] as Data;
-                    cell. = listUsersTypeID[cell.RowIndex];
-                } */
 
                 clsConnection.closeConnection();
             }
@@ -242,6 +234,58 @@ namespace MovieManagement
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public static int userLogin(ref TextBox textBoxUserName, ref TextBox textBoxUserPassword)
+        {
+            try
+            {
+                string id;
+                string query = "Select users_id From Users Where users_name = @users_name AND users_password = @users_password";
+                clsConnection.openConnection();
+                SqlCommand com = new SqlCommand(query, clsConnection.con);
+                SqlParameter p1 = new SqlParameter("@users_name", SqlDbType.NVarChar);
+                p1.Value = textBoxUserName.Text.Trim();
+                SqlParameter p2 = new SqlParameter("@users_password", SqlDbType.NVarChar);
+                p2.Value = textBoxUserPassword.Text.Trim();
+                com.Parameters.Add(p1);
+                com.Parameters.Add(p2);
+                userID = com.ExecuteScalar().ToString();
+                id = userID;
+                clsConnection.closeConnection();
+
+                if (id == "")
+                {
+                    return 0;
+                }
+                return 1;
+
+            }
+            catch (Exception ex)
+            {
+                int result = 0;
+                MessageBox.Show("Username or password is wrong! Check it again!!");
+                return result;
+            }
+        }
+
+        public static int checkUserType()
+        {
+            string user_type;
+            string query = @"Select Users_Type.userstype_name From Users INNER JOIN Users_Type ON Users.users_type = Users_Type.userstype_id Where users_id = @users_id";
+            clsConnection.openConnection();
+            SqlCommand com = new SqlCommand(query, clsConnection.con);
+            SqlParameter p1 = new SqlParameter("@users_id", SqlDbType.NVarChar);
+            p1.Value = userID.Trim();
+            com.Parameters.Add(p1);
+            user_type = com.ExecuteScalar().ToString();
+            clsConnection.closeConnection();
+
+            if (user_type == "Admin")
+            {
+                return 1;
+            }
+            return 0;
         }
     }
 }

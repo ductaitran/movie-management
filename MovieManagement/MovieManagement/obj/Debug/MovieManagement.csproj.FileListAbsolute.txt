@@ -51,3 +51,4 @@ C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieMana
 C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.csproj.CopyComplete
 C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
 C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
+D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.FormLogin.resources

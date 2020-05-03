@@ -19,9 +19,21 @@ namespace MovieManagement
             InitializeComponent();
             try
             {
+                int user_type = ClassUser.checkUserType();
+                if (user_type == 0)
+                {
+                    metroTabMovie.Controls.Remove(metroTabUser);
+                    metroTabMovie.Controls.Remove(metroTabPage1);
+                    metroTabMovie.Controls.Remove(metroTabSchedule);
+                }
+                else
+                {
+                    ClassUser.loadDataGridViewUser(ref dataGridViewUser);
+                    ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
+                }
+
                 ClassCinemaBox.loadCinemaBoxTab(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
-                ClassUser.loadDataGridViewUser(ref dataGridViewUser);
-                ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
+
             }
             catch (Exception ex)
             {
