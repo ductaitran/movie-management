@@ -48,7 +48,7 @@ namespace MovieManagement
                 ptbPreview.Image = new Bitmap(open.FileName);
             }
         }
-        public static void EditorAdd(ref DataGridView dataGridViewMovie)
+        public static void EditorAdd(ref PictureBox ptbPreview, ref Label lblMovieName, ref TextBox txtMoviedesc, ref Label lblMovieLength, ref DataGridView dataGridViewMovie)
         {
             if (dataGridViewMovie.CurrentRow != null)
             {
@@ -62,10 +62,11 @@ namespace MovieManagement
                 com.Parameters.AddWithValue("@movie_desc", dgvr.Cells["movie_desc"].Value == DBNull.Value ? "" : dgvr.Cells["movie_desc"].Value.ToString());
                 com.ExecuteNonQuery();
                 loadDataGridViewMovie(ref dataGridViewMovie);
+                loadMoviePreview(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
                 clsConnection.closeConnection();
             }
         }
-        public static void deleteMovie(ref DataGridView dataGridViewMovie)
+        public static void deleteMovie(ref PictureBox ptbPreview, ref Label lblMovieName, ref TextBox txtMoviedesc, ref Label lblMovieLength, ref DataGridView dataGridViewMovie)
         {
             int selectedrowindex = dataGridViewMovie.SelectedCells[0].RowIndex;
             try
@@ -76,6 +77,7 @@ namespace MovieManagement
                 cmd.ExecuteNonQuery();
                 loadDataGridViewMovie(ref dataGridViewMovie);
                 clsConnection.closeConnection();
+                loadMoviePreview(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
             }
             catch
             {
@@ -108,7 +110,9 @@ namespace MovieManagement
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 da.Dispose();
-                ptbPreview.Load((String)dt.Rows[0][1]);
+                string path = "../../../source/img/" + (String)dt.Rows[0][1];
+                /*ptbPreview.Load((String)dt.Rows[0][1]);*/
+                ptbPreview.Load(path);
                 ptbPreview.SizeMode = PictureBoxSizeMode.StretchImage;
                 lblMovieName.Text = "Title: " + (String)dt.Rows[0][0];
                 txtMoviedesc.Text = (String)dt.Rows[0][3];

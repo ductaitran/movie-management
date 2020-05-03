@@ -44,10 +44,11 @@ namespace MovieManagement
             Debug.WriteLine("khoi dong tu class");
             ButtonSaveSchedule.Enabled = true;
         }
-        public static DataTable GetSchedule(DateTime ShowDate)
+        public DataTable GetSchedule(DateTime ShowDate)
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("Schedule ID", typeof(string));
+            
+            dt.Columns.Add("Schedule ID", typeof(Int32));
             dt.Columns.Add("Cinema Box ID", typeof(string));
             dt.Columns.Add("Movie ID", typeof(string));
             dt.Columns.Add("Show Date", typeof(string));
@@ -64,13 +65,14 @@ namespace MovieManagement
             while (reader.Read())
             {
                 row = dt.NewRow();
-                row["Schedule ID"] = reader.GetString(0);
+                row["Schedule ID"] = reader.GetInt32(0);
                 row["Cinema Box ID"] = reader.GetString(1);
                 row["Movie ID"] = reader.GetString(2);
                 row["Show Date"] = reader.GetDateTime(3).ToShortDateString();
                 row["Show Time"] = reader.GetString(4);
                 dt.Rows.Add(row);
             }
+            dt.Columns[0].ReadOnly = true;
             return dt;
         }
         public void InitilizeDataGridView(DateTime ShowDate)
@@ -112,34 +114,10 @@ namespace MovieManagement
                 DataGridViewRow.Cells[1].Value = Convert.ToString(DataGridViewRow.Cells[3].Value);//3 cell chua id cinemabox
                 DataGridViewRow.Cells[2].Value = Convert.ToString(DataGridViewRow.Cells[4].Value);//4 cell chua id cinemabox
             }
-            //DataGridViewSchedule.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            /*
-            DataGridViewSchedule.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            DataGridViewSchedule.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            DataGridViewSchedule.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DataGridViewSchedule.Columns[3].Width = 150;
-            DataGridViewSchedule.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DataGridViewSchedule.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            DataGridViewSchedule.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            */
-            //DataGridViewSchedule.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            //DataGridViewSchedule.AlternatingRowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
         }
         
-        //button update
-        //public bool SaveData()
-        //{
-          //  ScheduleSource.AcceptChanges();
-            
-          //  foreach (DataGridViewRow DataGridViewRow in DataGridViewSchedule.Rows)
-         //   {
-                
-                //DataGridViewRow.Cells[1].Value = Convert.ToString(DataGridViewRow.Cells[2].Value);
-            //    Debug.WriteLine("0: "+Convert.ToString(DataGridViewRow.Cells[0].Value)+"1: "+ Convert.ToString(DataGridViewRow.Cells[1].Value) + "2: " + Convert.ToString(DataGridViewRow.Cells[2].Value) + "3: " + Convert.ToString(DataGridViewRow.Cells[3].Value) + "4: " + Convert.ToString(DataGridViewRow.Cells[4].Value) + "5: " + Convert.ToString(DataGridViewRow.Cells[5].Value));
-           // }
-          //  return true;
-     //   }
+        
         public bool RemoveData()
         {
             clsConnection.openConnection();
@@ -314,12 +292,12 @@ namespace MovieManagement
             try
             {
                 clsConnection.openConnection();
-                SqlCommand command = new SqlCommand("INSERT INTO schedule values(@schedule_id,@cinemabox_id,@movie_id,@schedule_date,@schedule_time);", clsConnection.con);
+                SqlCommand command = new SqlCommand("INSERT INTO schedule values(@cinemabox_id,@movie_id,@schedule_date,@schedule_time);", clsConnection.con);
                 command.Parameters.AddWithValue("@cinemabox_id", cinemabox_id);
                 command.Parameters.AddWithValue("@movie_id", movie_id);
                 command.Parameters.AddWithValue("@schedule_date", schedule_date);
                 command.Parameters.AddWithValue("@schedule_time", schedule_time);
-                command.Parameters.AddWithValue("@schedule_id", schedule_id);
+                /*command.Parameters.AddWithValue("@schedule_id", schedule_id);*/
                 result = command.ExecuteNonQuery();
             }
             catch(Exception err)

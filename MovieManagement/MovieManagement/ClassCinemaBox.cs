@@ -50,7 +50,7 @@ namespace MovieManagement
         {
             // clear DataGridViewCinemaBox
             dataGridViewCinemaBox.DataSource = null;
-            dataGridViewCinemaBox.Rows.Clear();
+            //dataGridViewCinemaBox.Rows.Clear();
 
             // hide DataGridViewCinemaBox
             dataGridViewCinemaBox.Visible = false;

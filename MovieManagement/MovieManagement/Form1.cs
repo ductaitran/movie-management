@@ -53,18 +53,18 @@ namespace MovieManagement
         // on Movie tab events
         private void btnRemoveMovie_Click(object sender, EventArgs e)
         {
-            ClassMovie.deleteMovie(ref dataGridViewMovie);
+            ClassMovie.deleteMovie(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
         }
 
         private void btnUpdateMovie_Click(object sender, EventArgs e)
         {
             ClassMovie.updateCover(ref dataGridViewMovie, ref ptbPreview);
-            ClassMovie.EditorAdd(ref dataGridViewMovie);
+            ClassMovie.EditorAdd(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
         }
 
         private void dataGridViewMovie_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            ClassMovie.EditorAdd(ref dataGridViewMovie);
+            ClassMovie.EditorAdd(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
         }
 
         private void ptbPreview_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace MovieManagement
 
         private void btnAddMoive_Click(object sender, EventArgs e)
         {
-            ClassMovie.EditorAdd(ref dataGridViewMovie);
+            ClassMovie.EditorAdd(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
         }
 
         private void btnSelectMovie_Click(object sender, EventArgs e)
