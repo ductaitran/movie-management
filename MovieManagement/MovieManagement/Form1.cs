@@ -27,13 +27,22 @@ namespace MovieManagement
             Schedule = new ClassSchedule(dataGridViewSchedule,buttonSaveSchedule, buttonUpdateSchedule, buttonRemoveSchedule,monthCalendar1);
             try
             {
+                int user_type = ClassUser.checkUserType();
+                if (user_type == 0)
+                {
+                    metroTabMovie.Controls.Remove(metroTabUser);
+                    metroTabMovie.Controls.Remove(metroTabPage1); // tab Movie
+                    metroTabMovie.Controls.Remove(metroTabSchedule);
+                }
+                else
+                {
+                    ClassUser.loadDataGridViewUser(ref dataGridViewUser);
+                    ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
+                    Schedule.LoadScheduleTab();
+                }
                 CinemaBox.loadCinemaBoxTab();
                 CinemaBox.changeSlotStateInPreview();
-                ClassUser.loadDataGridViewUser(ref dataGridViewUser);
-                ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
-				Schedule.LoadScheduleTab();
                 disPlayCurrentUser();
-
             }
             catch (Exception ex)
             {
@@ -159,6 +168,8 @@ namespace MovieManagement
         // on User tab envents
         private void buttonRemoveUser_Click(object sender, EventArgs e)
         {
+            GroupBoxAddUser.Visible = false;
+            buttonUpdateUser.Enabled = false;
             ClassUser.deleteUser(ref dataGridViewUser);
             ClassUser.loadDataGridViewUser(ref dataGridViewUser);
         }
@@ -177,7 +188,15 @@ namespace MovieManagement
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
+            TextBoxAddUserID.ReadOnly = false;
+            TextBoxAddUserID.Enabled = true;
             ClassUser.loadAddUserForm(ref dataGridViewUser, ref ComboBoxAddUserType);
+            ButtonFormAddUser.Visible = true;
+            ComboBoxAddUserType.SelectedIndex = -1;
+            TextBoxAddUserID.Text = "";
+            TextBoxAddUserName.Text = "";
+            TextBoxAddUserPassword.Text = "";
+            buttonUpdateUser.Enabled = false;
             GroupBoxAddUser.Visible = true;
 
         }
@@ -208,6 +227,7 @@ namespace MovieManagement
         {
             ClassUser.deleteUser(ref dataGridViewUser);
             ClassUser.loadDataGridViewUser(ref dataGridViewUser);
+            buttonUpdateUser.Enabled = false;
         }
 
         private void buttonEditUser_Click(object sender, EventArgs e)
@@ -297,12 +317,19 @@ namespace MovieManagement
         private void disPlayCurrentUser()
         {
             // handle display
+            string user = ClassUser.getUserName();
+            labelCurrentUser.Text = ClassUser.userType + ": " + user;
         }
 
         // logout, return to Signin Form
         private void labelLogout_Click(object sender, EventArgs e)
         {
             // handle logout
+            this.Close();
+            this.Dispose();
+            
+            
+            
         }
 
         //make form movable
