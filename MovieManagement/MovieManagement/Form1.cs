@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,9 +15,16 @@ namespace MovieManagement
 {
     public partial class Form1 : Form
     {
+        private List<string> SlotnameList = new List<string>();
+        private ClassCinemaBox CinemaBox;
+        private ClassSchedule Schedule;
         public Form1()
         {
             InitializeComponent();
+            // create an new object of ClassCinemaBox, bind references
+            CinemaBox = new ClassCinemaBox(dateTimePickerDate, comboBoxMovie, comboBoxTime, comboBoxCinemaBox, 
+                dataGridViewCinemaBox, metroTabCinemaBox);
+            Schedule = new ClassSchedule(dataGridViewSchedule,buttonSaveSchedule, buttonUpdateSchedule, buttonRemoveSchedule,monthCalendar1);
             try
             {
                 int user_type = ClassUser.checkUserType();
@@ -30,10 +38,10 @@ namespace MovieManagement
                 {
                     ClassUser.loadDataGridViewUser(ref dataGridViewUser);
                     ClassMovie.loadDataGridViewMovie(ref dataGridViewMovie);
+                    Schedule.LoadScheduleTab();
                 }
-
-                ClassCinemaBox.loadCinemaBoxTab(ref textBoxDate, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
-
+                CinemaBox.loadCinemaBoxTab();
+                CinemaBox.changeSlotStateInPreview();
             }
             catch (Exception ex)
             {
@@ -46,20 +54,121 @@ namespace MovieManagement
             Application.Exit();
         }
 
+        // on Movie tab events
+        private void btnRemoveMovie_Click(object sender, EventArgs e)
+        {
+            ClassMovie.deleteMovie(ref dataGridViewMovie);
+        }
+
+        private void btnUpdateMovie_Click(object sender, EventArgs e)
+        {
+            ClassMovie.updateCover(ref dataGridViewMovie, ref ptbPreview);
+            ClassMovie.EditorAdd(ref dataGridViewMovie);
+        }
+
+        private void dataGridViewMovie_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            ClassMovie.EditorAdd(ref dataGridViewMovie);
+        }
+
+        private void ptbPreview_Click(object sender, EventArgs e)
+        {
+            ClassMovie.setCover(ref dataGridViewMovie, ref ptbPreview);
+        }
+
+        private void btnAddMoive_Click(object sender, EventArgs e)
+        {
+            ClassMovie.EditorAdd(ref dataGridViewMovie);
+        }
+
+        private void btnSelectMovie_Click(object sender, EventArgs e)
+        {
+            ClassMovie.loadMoviePreview(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
+        }
+
+
+        // on Cinema Box tab events   
+        private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
+        {
+            CinemaBox.loadComboBoxMovie();
+            CinemaBox.loadDataGridViewCinemaBox();
+        }
+
         private void comboBoxMovie_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClassCinemaBox.loadComboBoxTime(ref comboBoxMovie, ref comboBoxTime );
-            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+            CinemaBox.loadComboBoxTime();
+            CinemaBox.loadDataGridViewCinemaBox();
         }
 
         private void comboBoxTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClassCinemaBox.loadComboBoxCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
-            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+            CinemaBox.loadComboBoxCinemaBox();
+            CinemaBox.loadDataGridViewCinemaBox();
         }
 
- 
+        private void comboBoxCinemaBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CinemaBox.loadDataGridViewCinemaBox();
+        }
 
+        private void dataGridViewCinemaBox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dataGridViewCinemaBox.CurrentRow != null)
+                {
+                    CinemaBox.editDataGridViewCinemaBoxStatus();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("on CellValueChanged event: " + ex.Message);
+            }
+
+        }
+
+        private void btnUpdateBox_Click(object sender, EventArgs e)
+        {
+            CinemaBox.editDataGridViewCinemaBoxStatus();
+        }
+
+        private void buttonBoxSlot_click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn.BackColor == Color.Red)
+            {
+                btn.BackColor = SystemColors.Control;
+            }
+            else
+            {
+                btn.BackColor = Color.Red;
+            }
+
+            // if slot is chosed, add slot name to List
+            // if slot is unchosed, remove slot name from List
+            if (btn.BackColor == Color.Red)
+            {
+                SlotnameList.Add(btn.Name);
+            }
+            if (btn.BackColor == SystemColors.Control)
+            {
+                SlotnameList.Remove(btn.Name);
+            }
+        }
+
+        private void buttonOKCB_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("=======");
+            foreach (string slotName in SlotnameList)
+            {
+                Debug.WriteLine(slotName);
+                CinemaBox.updateStatusByPreview(slotName);
+            }
+            CinemaBox.loadDataGridViewCinemaBox();
+        }
+
+
+        // on User tab envents
         private void buttonRemoveUser_Click(object sender, EventArgs e)
         {
             ClassUser.deleteUser(ref dataGridViewUser);
@@ -104,7 +213,7 @@ namespace MovieManagement
             TextBoxAddUserName.Text = "";
             TextBoxAddUserPassword.Text = "";
             ClassUser.loadDataGridViewUser(ref dataGridViewUser);
-            
+
         }
 
         private void dataGridViewUser_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -120,48 +229,73 @@ namespace MovieManagement
             GroupBoxAddUser.Visible = true;
             buttonUpdateUser.Enabled = true;
         }
-
-        private void comboBoxCinemaBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void buttonUpdateSchedule_Click(object sender, EventArgs e)
         {
-            ClassCinemaBox.loadDataGridViewCinemaBox(ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox, ref dataGridViewCinemaBox);
+            if (Schedule.UpdateData(monthCalendar1.SelectionRange.Start))
+            {
+                Debug.WriteLine("Refreshing schedule");
+                buttonSaveSchedule.Enabled = false;
+            }
+            else Debug.WriteLine("Refresh failed");
         }
 
-        private void dataGridViewCinemaBox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void buttonRemoveSchedule_Click(object sender, EventArgs e)
         {
-            if (dataGridViewCinemaBox.CurrentRow != null)
+            if (Schedule.RemoveData())
             {
-                ClassCinemaBox.editDataGridViewCinemaBoxStatus(ref dataGridViewCinemaBox, ref comboBoxMovie, ref comboBoxTime, ref comboBoxCinemaBox);
+                Debug.WriteLine("Removed");
+                buttonSaveSchedule.Enabled = false;
+                buttonUpdateSchedule.PerformClick();
+            }
+            else
+            {
+                MessageBox.Show("Select a valid row and try again");
+                Debug.WriteLine("Remove Fail");
             }
         }
-        private void btnSelectMovie_Click(object sender, EventArgs e)
+
+        private void buttonSaveSchedule_Click(object sender, EventArgs e)
         {
-            ClassMovie.loadMoviePreview(ref ptbPreview, ref lblMovieName, ref txtMoviedesc, ref lblMovieLength, ref dataGridViewMovie);
+            buttonSaveSchedule.Enabled = false;
+            Schedule.SaveData();
         }
 
-        private void btnRemoveMovie_Click(object sender, EventArgs e)
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            ClassMovie.deleteMovie(ref dataGridViewMovie);
+            dateTimePickerSchedule.Value = monthCalendar1.SelectionRange.Start;
+            Schedule.LoadScheduleTab();
         }
 
-        private void btnUpdateMovie_Click(object sender, EventArgs e)
+        private void dataGridViewSchedule_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            ClassMovie.updateCover(ref dataGridViewMovie, ref ptbPreview);
-            ClassMovie.EditorAdd(ref dataGridViewMovie);
+            if (dataGridViewSchedule.CurrentCell.ColumnIndex == 1 || dataGridViewSchedule.CurrentCell.ColumnIndex == 3 && e.Control is ComboBox)
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.SelectedIndexChanged -= new EventHandler(comboBox_SeletedIndexChanged);
+                    comboBox.SelectedIndexChanged += new EventHandler(comboBox_SeletedIndexChanged);
+                }
+            }
+        }
+        private void comboBox_SeletedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            buttonSaveSchedule.Enabled = true;
         }
 
-        private void dataGridViewMovie_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void buttonSaveSchedule_EnabledChanged(object sender, EventArgs e)
         {
-            ClassMovie.EditorAdd(ref dataGridViewMovie);
-        }
-
-        private void ptbPreview_Click(object sender, EventArgs e)
-        {
-            ClassMovie.setCover(ref dataGridViewMovie, ref ptbPreview);
-        }
-
-        private void btnAddMoive_Click(object sender, EventArgs e)
-        {
-            ClassMovie.EditorAdd(ref dataGridViewMovie);
+            if (((Button)sender).Enabled)
+            {
+                buttonSaveSchedule.BackColor = Color.CornflowerBlue;
+                buttonSaveSchedule.ForeColor = Color.White;
+            }
+            else
+            {
+                buttonSaveSchedule.BackColor = Color.Transparent;
+                buttonSaveSchedule.ForeColor = Color.CornflowerBlue;
+            }
         }
     }
 }

@@ -52,3 +52,6 @@ C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieMana
 C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
 C:\Users\Ngoc Minh\Desktop\New folder\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
 D:\.NET Project\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.FormLogin.resources
+D:\Source\Repos\movie-management\MovieManagement\MovieManagement\bin\Debug\MovieManagement.exe.config
+D:\Source\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.exe
+D:\Source\Repos\movie-management\MovieManagement\MovieManagement\obj\Debug\MovieManagement.pdb
